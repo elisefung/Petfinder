@@ -1,0 +1,32 @@
+{
+  "name": "Petfinder",
+  "version": "1.0.0",
+  "description": "a simple redesign and implementation of the Petfinder website using the MEANstack and the Petfinder API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elisefung/Petfinder.git"
+  },
+  "keywords": [
+    "web",
+    "development",
+    "MEANstack",
+    "Foundation",
+    "Petfinder"
+  ],
+  "author": "Elise Fung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elisefung/Petfinder/issues"
+  },
+  "homepage": "https://github.com/elisefung/Petfinder",
+  "dependencies": {
+    "body-parser": "^1.12.2",
+    "express": "^4.12.3",
+    "mongoose": "^4.0.1",
+    "multer": "^0.1.8"
+  }
+}
