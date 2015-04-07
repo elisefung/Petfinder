@@ -11,7 +11,7 @@ app.use(multer());
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
-    res.send('hello world!');
+    res.send('hello world! Petfinder app is coming soon!');
 });
 
 app.set('port', (process.env.PORT || 5000));
