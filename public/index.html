@@ -7,8 +7,11 @@
     <title>Petfinder</title>
     <meta name="author" content="Elise Fung" />
     <meta name="description" content="a simple redesign and implementation of the Petfinder website using the MEANstack and the Petfinder API" />
-    <link rel="stylesheet" href="stylesheets/app.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/app.css" />
     <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </head>
 
 <body ng-app="PetfinderApp">
@@ -16,7 +19,7 @@
         <nav class="top-bar" data-topbar role="navigation">
             <ul class="title-area">
                 <li class="name">
-                    <h1><a href="#">Petfinder</a></h1>
+                    <h1><a href="#/search">Petfinder</a></h1>
                 </li>
                 <li class="toggle-topbar menu-icon"><a href="#"><span></span></a>
                 </li>
@@ -31,24 +34,10 @@
             </section>
         </nav>
     </div>
-    <div class="row">
-        <dl class="sub-nav">
-            <dt>Find a pet to adopt</dt>
-            <dd class="active"><a href="#">All</a>
-            </dd>
-            <dd><a href="#">Dogs</a>
-            </dd>
-            <dd><a href="#">Cats</a>
-            </dd>
-            <dd><a href="#">Rabbits</a>
-            </dd>
-            <dd><a href="#">Pigs</a>
-            </dd>
-            <dd><a href="#">Barnyards</a>
-            </dd>
-        </dl>
+    <div ng-view>
     </div>
 
+    <!--
     <div class="row">
         <div class="large-12 columns">
             <h1>Petfinder</h1>
@@ -92,7 +81,7 @@
     <div class="row">
         <div class="large-8 medium-8 columns">
             <h5>Here&rsquo;s your basic grid:</h5>
-            <!-- Grid Example -->
+             Grid Example 
 
             <div class="row">
                 <div class="large-12 columns">
@@ -219,13 +208,13 @@
             </div>
         </div>
     </div>
+-->
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-    <script src="js/angular-route.min.js"></script>
-    <script src="js/angular-route.min.js.map"></script>
-    <script src="js/app.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
 </body>
 
 </html>
