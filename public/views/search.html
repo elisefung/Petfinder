@@ -2,7 +2,7 @@
     <div id="animalFilter" class="row">
         <dl class="sub-nav">
             <dt>Find a pet to adopt</dt>
-            <dd class="active"><a href="#">All</a>
+            <dd class="active">All
             </dd>
             <dd><a href="#">Dogs</a>
             </dd>
@@ -15,6 +15,29 @@
             <dd><a href="#">Barnyards</a>
             </dd>
         </dl>
+    </div>
+    <div id="refineFilter" class="row">
+        <div class="small-12 columns">
+            <input type="text" placeholder="Location" />
+            <select id="breed">
+                <option value="default">Breed</option>
+                <option value="starbuck">Starbuck</option>
+                <option value="hotdog">Hot Dog</option>
+                <option value="apollo">Apollo</option>
+            </select>
+            <select id="age">
+                <option value="default">Age</option>
+                <option value="starbuck">Young</option>
+                <option value="hotdog">Adult</option>
+                <option value="apollo">Elder</option>
+            </select>
+            <select id="gender">
+                <option value="default">Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <a href="#" class="button">Find a Pet</a>
+        </div>
     </div>
     <h1>{{ hello }}</h1>
 </div>

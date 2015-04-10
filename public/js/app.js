@@ -6,7 +6,7 @@ app.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'views/search.html',
         controller: 'SearchController'
     }).
-    when('/pets/:petID', {
+    when('/pets', {
         templateUrl: 'views/pet.html',
         controller: 'PetController'
     }).
@@ -14,19 +14,15 @@ app.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'views/profile.html',
         controller: 'ProfileController'
     }).
+    when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginController'
+    }).
+    when('/signup', {
+        templateUrl: 'views/signup.html',
+        controller: 'SignupController'
+    }).
     otherwise({
         redirectTo: '/'
     });
 }]);
-
-app.controller('SearchController', function ($scope, $http) {
-    $scope.hello = "Hello World from Search Controller!";
-});
-
-app.controller('PetController', function ($scope, $http) {
-    $scope.hello = "Hello World from Pet Controller!";
-});
-
-app.controller('ProfileController', function ($scope, $http) {
-    $scope.hello = "Hello World from Profile Controller!";
-});
