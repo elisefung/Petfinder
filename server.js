@@ -6,7 +6,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/petfinder');
+mongoose.connect('mongodb://elisefung:fung0409@ds061611.mongolab.com:61611/petfinder');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -60,11 +60,4 @@ db.once('open', function (callback) {
     // Models
     var Pet = mongoose.model('Pet', PetSchema);
     var User = mongoose.model('User', UserSchema);
-
-    var cooper = new Pet({
-        name: 'Cooper',
-        id: '1',
-        picture: '1'
-    });
-    console.log(cooper.name);
 });
