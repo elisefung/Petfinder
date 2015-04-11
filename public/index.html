@@ -39,7 +39,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="#/signup">Sign up</a>
+                    <li><a href="#/signup" ng-show="!currentUser">Sign up</a>
                     </li>
                 </ul>
             </section>
@@ -102,12 +102,16 @@
                 <a ng-click="search(query)" class="button expand">Find a Pet</a>
             </div>
         </div>
-
     </div>
 
     <div ng-view>
     </div>
 
+    <script src="views/login/login.js"></script>
+    <script src="views/signup/signup.js"></script>
+    <script src="views/nav/nav.js"></script>
+    <script src="views/profile/profile.js"></script>
+    <script src="views/search/search.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script>

@@ -6,6 +6,10 @@ var app = express();
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var http = require('http');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://elisefung:fung0409@ds061611.mongolab.com:61611/petfinder');
 
@@ -14,6 +18,13 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(multer());
+app.use(session({
+    secret: 'this is the secret'
+}));
+app.use(cookieParser())
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
@@ -35,7 +46,7 @@ app.listen(app.get('port'), function () {
 })
 
 // -------------------------------------------------------------------
-// DATABASE SETUP
+// DATA OBJECT MODEL
 
 // Schemas
 var PetSchema = new mongoose.Schema({
@@ -55,10 +66,131 @@ var UserSchema = new mongoose.Schema({
 
 // Models
 var pets = mongoose.model('pets', PetSchema);
-var users = mongoose.model('ssers', UserSchema);
+var users = mongoose.model('users', UserSchema);
 
 // -------------------------------------------------------------------
-// PASSING DATABASE TO CLIENT
+// AUTHENTICATION
+
+passport.use(new LocalStrategy(
+    function (email, password, done) {
+        users.findOne({
+            email: email,
+            password: password
+        }, function (err, user) {
+            if (err) {
+                return done(err);
+            }
+            if (!user) {
+                return done(null, false);
+            }
+            return done(null, user);
+        })
+    }));
+
+passport.serializeUser(function (user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function (user, done) {
+    done(null, user);
+});
+
+app.post("/login", passport.authenticate('local'), function (req, res) {
+    var user = req.user;
+    res.json(user);
+});
+
+app.get('/loggedin', function (req, res) {
+    res.send(req.isAuthenticated() ? req.user : '0');
+});
+
+app.post('/logout', function (req, res) {
+    req.logOut();
+    res.send(200);
+});
+
+app.post('/signup', function (req, res) {
+    var newUser = req.body;
+    users.findOne({
+        email: newUser.email
+    }, function (err, user) {
+        if (err) {
+            return next(err);
+        }
+        if (user) {
+            res.json(null);
+            return;
+        }
+        var newUser = new users(req.body);
+        newUser.save(function (err, user) {
+            req.login(user, function (err) {
+                if (err) {
+                    return next(err);
+                }
+                res.json(user);
+            });
+        });
+    });
+});
+
+var auth = function (req, res, next) {
+    if (!req.isAuthenticated()) {
+        res.send(401);
+    } else {
+        next();
+    }
+};
+
+// -------------------------------------------------------------------
+// USERS
+
+app.get("/api/users", auth, function (req, res) {
+    users.find(function (err, users) {
+        res.json(users);
+    });
+});
+
+app.delete("/api/users/:id", auth, function (req, res) {
+    users.findById(req.params.id, function (err, user) {
+        user.remove(function (err, count) {
+            users.find(function (err, users) {
+                res.json(users);
+            });
+        });
+    });
+});
+
+app.put("/api/users/:id", auth, function (req, res) {
+    users.findById(req.params.id, function (err, user) {
+        user.update(req.body, function (err, count) {
+            users.find(function (err, users) {
+                res.json(users);
+            });
+        });
+    });
+});
+
+app.post("/api/users", auth, function (req, res) {
+    users.findOne({
+        email: req.body.email
+    }, function (err, user) {
+        if (user == null) {
+            user = new users(req.body);
+            user.save(function (err, user) {
+                users.find(function (err, users) {
+                    res.json(users);
+                });
+            });
+        } else {
+            users.find(function (err, users) {
+                res.json(users);
+            });
+        }
+    });
+});
+
+// -------------------------------------------------------------------
+// PETS
 
 // Render all pets
 app.get('/api/pets', function (req, res) {
