@@ -1,8 +1,13 @@
 app.controller('NavController', function ($scope) {});
 
 app.controller('SearchController', function ($scope, $http) {
-    $scope.hello = "Hello World from Search Controller!";
+
 });
+
+app.controller('ListController', function ($scope, $http) {
+    $scope.hello = "Hello World from List Controller!";
+});
+
 
 app.controller('PetController', function ($scope, $http) {
     $scope.hello = "Hello World from Pet Controller!";
