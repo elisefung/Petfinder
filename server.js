@@ -61,7 +61,10 @@ var UserSchema = new mongoose.Schema({
     password: String,
     favorites: [{
         id: String
-        }]
+        }],
+    friends: [{
+        id: String
+    }]
 });
 
 // Models
@@ -146,12 +149,14 @@ var auth = function (req, res, next) {
 // -------------------------------------------------------------------
 // USERS
 
+// get all registered users
 app.get("/api/users", auth, function (req, res) {
     users.find(function (err, users) {
         res.json(users);
     });
 });
 
+// remove the user by ID
 app.delete("/api/users/:id", auth, function (req, res) {
     users.findById(req.params.id, function (err, user) {
         user.remove(function (err, count) {
@@ -162,6 +167,7 @@ app.delete("/api/users/:id", auth, function (req, res) {
     });
 });
 
+// update the user by ID
 app.put("/api/users/:id", auth, function (req, res) {
     users.findById(req.params.id, function (err, user) {
         user.update(req.body, function (err, count) {
@@ -172,6 +178,7 @@ app.put("/api/users/:id", auth, function (req, res) {
     });
 });
 
+// add a user 
 app.post("/api/users", auth, function (req, res) {
     users.findOne({
         email: req.body.email

@@ -5,8 +5,7 @@
             <form id="signupForm">
                 <div class="row">
                     <div class="small-12 columns">
-                        <input ng-model="user.firstName" type="text" placeholder="first name" />
-                        <input ng-model="user.lastName" type="text" placeholder="last name" />
+                        <input ng-model="user.username" type="text" placeholder="username" />
                         <input ng-model="user.email" type="email" placeholder="email" />
                         <input ng-model="user.password" type="text" placeholder="password" />
                         <a ng-click="signup(user)" class="button expand">Sign up</a> {{ message }}

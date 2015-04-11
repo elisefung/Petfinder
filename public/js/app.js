@@ -1,7 +1,7 @@
 var app = angular.module('PetfinderApp', ['ngRoute']);
 
 // Configure Routing
-app.config(['$routeProvider', function ($routeProvider) {
+app.config(['$routeProvider', function ($routeProvider, $httpProvider) {
     $routeProvider.
     when('/', {
         templateUrl: 'views/search/search.html',
@@ -55,10 +55,10 @@ var apisig = "59b0c48e2afad3c8bba73b5659bf4a8d";
 var baseUrl = "http://api.petfinder.com/";
 
 // Pet Search Factory
-app.factory('PetSearch', function PetSearch($http) {
+app.factory('PetSearch', function PetSearch($http, $rootScope) {
 
     // array of pet IDs
-    var favorites = [];
+    var favorites = $rootScope.favorites;
 
     // add the given pet to the list of favorites
     var addToFavorites = function (pet) {
@@ -80,12 +80,63 @@ app.factory('PetSearch', function PetSearch($http) {
         console.log('searching for pets...');
         $.getJSON('http://api.petfinder.com/pet.getRandom?format=json&key=' + apikey + '&callback=?&output=basic')
             .success(callback);
-
     };
+    
+    // array of user IDs
+    var friends = $rootScope.friends;
+
+    // add the given user to the list of friends
+    var addToFriends = function (user) {
+        friends.push(user);
+    };
+
+    // remove the given user from the list of friends
+    var removeFromFriends = function (user) {
+        var index = friends.indexOf(user);
+        friends.splice(index, 1);
+    };
+
+    // return list of friends
+    var getFriends = function () {
+        return friends;
+    };
+
     return {
         searchForPets: searchForPets,
         addToFavorites: addToFavorites,
         removeFromFavorites: removeFromFavorites,
-        getFavorites: getFavorites
+        getFavorites: getFavorites,
+        addToFriends: addToFriends,
+        removeFromFriends: removeFromFriends,
+        getFriends: getFriends
     }
 });
+
+// User Search Factory
+//app.factory('UserSearch', function UserSearch($http, $rootScope) {
+//
+//    // array of user IDs
+//    var friends = $rootScope.friends;
+//
+//    // add the given user to the list of friends
+//    var addToFriends = function (user) {
+//        friends.push(user);
+//    };
+//
+//    // remove the given user from the list of friends
+//    var removeFromFriends = function (user) {
+//        var index = friends.indexOf(user);
+//        friends.splice(index, 1);
+//    };
+//
+//    // return list of friends
+//    var getFriends = function () {
+//        return friends;
+//    };
+//
+//    return {
+//        addToFriends: addToFriends,
+//        removeFromFriends: removeFromFriends,
+//        getFriends: getFriends
+//    }
+//});
