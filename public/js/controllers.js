@@ -1,7 +1,9 @@
 app.controller('NavController', function ($scope) {});
 
 app.controller('SearchController', function ($scope, $http) {
-
+    $scope.query = {
+        type: 'all'
+    };
 });
 
 app.controller('ListController', function ($scope, $http) {
