@@ -5,6 +5,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var multer = require('multer');
+var http = require('http');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://elisefung:fung0409@ds061611.mongolab.com:61611/petfinder');
 
@@ -36,28 +37,48 @@ app.listen(app.get('port'), function () {
 // -------------------------------------------------------------------
 // DATABASE SETUP
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function (callback) {
-
-    // Schemas
-    var PetSchema = new mongoose.Schema({
-        name: String,
-        id: String,
-        picture: String
-    });
-    var UserSchema = new mongoose.Schema({
-        firstName: String,
-        lastName: String,
-        id: String,
-        email: String,
-        password: String,
-        favorites: [{
-            id: String
+// Schemas
+var PetSchema = new mongoose.Schema({
+    name: String,
+    id: String,
+    picture: String
+});
+var UserSchema = new mongoose.Schema({
+    firstName: String,
+    lastName: String,
+    email: String,
+    password: String,
+    favorites: [{
+        id: String
         }]
-    });
+});
 
-    // Models
-    var Pet = mongoose.model('Pet', PetSchema);
-    var User = mongoose.model('User', UserSchema);
+// Models
+var pets = mongoose.model('pets', PetSchema);
+var users = mongoose.model('ssers', UserSchema);
+
+// -------------------------------------------------------------------
+// PASSING DATABASE TO CLIENT
+
+// Render all pets
+app.get('/api/pets', function (req, res) {
+    pets.find(function (err, docs) {
+        res.json(docs);
+    });
+});
+
+// Render one pet
+app.get('/api/pets/:id', function (req, res) {
+    pets.findById(req.params.id, function (err, doc) {
+        res.json(doc);
+    });
+});
+
+// Delete pet by ID
+app.delete('/api/pets/:id', function (req, res) {
+    pets.remove({
+        _id: req.params.id
+    }, function () {
+        res.json(docs);
+    });
 });

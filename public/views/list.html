@@ -1,0 +1,13 @@
+<div ng-controller="ListController">
+    <div class="row">
+        <h2>Popular Pets</h2>
+    </div>
+    <div id="petList" class="row">
+        <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+            <li ng-repeat="pet in petList">
+                <img src="{{pet.picture}}" />
+                <h4 class="">{{ pet.name }}</h4>
+            </li>
+        </ul>
+    </div>
+</div>
