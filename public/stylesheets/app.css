@@ -9157,3 +9157,18 @@ th.hide-for-touch {
     display: table-cell !important;
   }
 }
+/* line 6, ../scss/app.scss */
+#browse-pets #search-results .adoptable-pet .pet-image-wrap {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 160px;
+}
+/* line 12, ../scss/app.scss */
+#browse-pets #search-results .adoptable-pet .pet-image {
+  min-width: 186px;
+  min-height: 160px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
