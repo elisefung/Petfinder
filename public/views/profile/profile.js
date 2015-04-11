@@ -30,18 +30,54 @@ app.controller('ProfileController', function ($scope, $http, $rootScope) {
     //        $scope.user = user;
     //    }
 
+
     var currentUser = $rootScope.currentUser;
     $scope.friendsList = currentUser.friends;
+    $scope.numberOfFriends = $scope.friendsList.length;
+
+    var updateFriendCount = function () {
+        $scope.numberOfFriends = $scope.friendsList.length;
+    }
 
     $scope.addToFriends = function (newFriend) {
-        $http.get('/api/users/' + currentUser._id)
+
+        // get the current user
+        $http.get('/api/user/' + currentUser._id)
             .success(function (user) {
+
+                // add the new friend to the friends array
                 user.friends.push(newFriend);
                 var updatedUser = user;
-                console.log('updatedUser: ' + updatedUser);
-                $http.put('/api/users/' + currentUser._id, updatedUser)
+
+                // update the current user
+                $http.put('/api/user/' + currentUser._id, updatedUser)
                     .success(function (user) {
+
+                        // save new friend list
                         $scope.friendsList = user.friends;
+                        updateFriendCount();
+                    });
+            });
+    }
+
+    $scope.removeFromFriends = function (exFriend) {
+
+        // get the current user
+        $http.get('/api/user/' + currentUser._id)
+            .success(function (user) {
+
+                // add the new friend to the friends array
+                var index = user.friends.indexOf(exFriend);
+                user.friends.splice(index, 1);
+                var updatedUser = user;
+
+                // update the current user
+                $http.put('/api/user/' + currentUser._id, updatedUser)
+                    .success(function (user) {
+
+                        // save new friend list
+                        $scope.friendsList = user.friends;
+                        updateFriendCount();
                     });
             });
     }

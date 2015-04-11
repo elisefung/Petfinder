@@ -156,14 +156,7 @@ app.get("/api/users", auth, function (req, res) {
     });
 });
 
-// get users by ID
-app.get('/api/users/:id', auth, function (req, res) {
-    users.findById(req.params.id, function (err, user) {
-        res.json(user);
-    });
-});
-
-// remove the user by ID
+// remove the user and return all users
 app.delete("/api/users/:id", auth, function (req, res) {
     users.findById(req.params.id, function (err, user) {
         user.remove(function (err, count) {
@@ -174,18 +167,7 @@ app.delete("/api/users/:id", auth, function (req, res) {
     });
 });
 
-// update the user by ID
-app.put("/api/users/:id", auth, function (req, res) {
-    users.findById(req.params.id, function (err, user) {
-        user.update(req.body, function (err, count) {
-            users.findById(req.params.id, function (err, user) {
-                res.json(user);
-            });
-        });
-    });
-});
-
-// add a user 
+// add the user return all users
 app.post("/api/users", auth, function (req, res) {
     users.findOne({
         email: req.body.email
@@ -202,6 +184,35 @@ app.post("/api/users", auth, function (req, res) {
                 res.json(users);
             });
         }
+    });
+});
+
+// update the user and return all users
+app.put("/api/users/:id", auth, function (req, res) {
+    users.findById(req.params.id, function (err, user) {
+        user.update(req.body, function (err, count) {
+            users.find(function (err, users) {
+                res.json(users);
+            });
+        });
+    });
+});
+
+// get the user by ID and return single user
+app.get('/api/user/:id', auth, function (req, res) {
+    users.findById(req.params.id, function (err, user) {
+        res.json(user);
+    });
+});
+
+// update the user and return single user
+app.put('/api/user/:id', auth, function (req, res) {
+    users.findById(req.params.id, function (err, user) {
+        user.update(req.body, function (err, count) {
+            users.findById(req.params.id, function (err, user) {
+                res.json(user);
+            });
+        });
     });
 });
 
