@@ -21,7 +21,7 @@ app.use(multer());
 app.use(session({
     secret: 'this is the secret'
 }));
-app.use(cookieParser())
+app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -55,8 +55,7 @@ var PetSchema = new mongoose.Schema({
     picture: String
 });
 var UserSchema = new mongoose.Schema({
-    firstName: String,
-    lastName: String,
+    username: String,
     email: String,
     password: String,
     favorites: [{
@@ -72,9 +71,9 @@ var users = mongoose.model('users', UserSchema);
 // AUTHENTICATION
 
 passport.use(new LocalStrategy(
-    function (email, password, done) {
+    function (username, password, done) {
         users.findOne({
-            email: email,
+            username: username,
             password: password
         }, function (err, user) {
             if (err) {
@@ -95,8 +94,10 @@ passport.deserializeUser(function (user, done) {
     done(null, user);
 });
 
-app.post("/login", passport.authenticate('local'), function (req, res) {
+app.post('/login', passport.authenticate('local'), function (req, res) {
+    console.log('hello ' + req.user);
     var user = req.user;
+    console.log(user);
     res.json(user);
 });
 
@@ -112,7 +113,7 @@ app.post('/logout', function (req, res) {
 app.post('/signup', function (req, res) {
     var newUser = req.body;
     users.findOne({
-        email: newUser.email
+        username: newUser.username
     }, function (err, user) {
         if (err) {
             return next(err);
