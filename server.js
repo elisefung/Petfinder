@@ -194,11 +194,6 @@ app.post("/api/users", auth, function (req, res) {
 // -------------------------------------------------------------------
 // PETS
 
-// API data
-var apikey = "5ac1149d1668e6e3cfb18d3556ef8d79";
-var apisig = "59b0c48e2afad3c8bba73b5659bf4a8d";
-var baseUrl = "http://api.petfinder.com/";
-
 // Render all pets
 app.get('/api/pets', function (req, res) {
     pets.find(function (err, docs) {
