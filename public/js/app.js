@@ -36,6 +36,8 @@ var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
         // User is Authenticated
         if (user !== '0') {
             $rootScope.currentUser = user;
+            $rootScope.currentUser.favorites = user.favorites;
+            $rootScope.currentUser.friends = user.friends;
             deferred.resolve();
         }
         // User is Not Authenticated
@@ -56,59 +58,60 @@ var baseUrl = "http://api.petfinder.com/";
 
 // Pet Search Factory
 app.factory('PetSearch', function PetSearch($http, $rootScope) {
+    //    var user = $rootScope.currentUser;
+    //    console.log('currentuser: ' + user);
+    //    // array of pet IDs
+    //    var favorites = [];
+    //
+    //    // add the given pet to the list of favorites
+    //    var addToFavorites = function (pet) {
+    //        favorites.push(pet);
+    //    };
+    //
+    //    // remove the given pet from the list of favorites
+    //    var removeFromFavorites = function (pet) {
+    //        var index = favorites.indexOf(pet);
+    //        favorites.splice(index, 1);
+    //    };
+    //
+    //    // return list of favorite pets
+    //    var getFavorites = function () {
+    //        return favorites;
+    //    };
+    //
+    //    var searchForPets = function (callback) {
+    //        console.log('searching for pets...');
+    //        $.getJSON('http://api.petfinder.com/pet.getRandom?format=json&key=' + apikey + '&callback=?&output=basic')
+    //            .success(callback);
+    //    };
 
-    // array of pet IDs
-    var favorites = $rootScope.favorites;
-
-    // add the given pet to the list of favorites
-    var addToFavorites = function (pet) {
-        favorites.push(pet);
-    };
-
-    // remove the given pet from the list of favorites
-    var removeFromFavorites = function (pet) {
-        var index = favorites.indexOf(pet);
-        favorites.splice(index, 1);
-    };
-
-    // return list of favorite pets
-    var getFavorites = function () {
-        return favorites;
-    };
-
-    var searchForPets = function (callback) {
-        console.log('searching for pets...');
-        $.getJSON('http://api.petfinder.com/pet.getRandom?format=json&key=' + apikey + '&callback=?&output=basic')
-            .success(callback);
-    };
-    
     // array of user IDs
-    var friends = $rootScope.friends;
+    //    var friends = [];
 
     // add the given user to the list of friends
-    var addToFriends = function (user) {
+    var addToFriends = function (friends, user) {
         friends.push(user);
     };
 
     // remove the given user from the list of friends
-    var removeFromFriends = function (user) {
+    var removeFromFriends = function (friends, user) {
         var index = friends.indexOf(user);
         friends.splice(index, 1);
     };
 
     // return list of friends
-    var getFriends = function () {
-        return friends;
-    };
+    //    var getFriends = function () {
+    //        return friends;
+    //    };
 
     return {
-        searchForPets: searchForPets,
-        addToFavorites: addToFavorites,
-        removeFromFavorites: removeFromFavorites,
-        getFavorites: getFavorites,
+        //        searchForPets: searchForPets,
+        //        addToFavorites: addToFavorites,
+        //        removeFromFavorites: removeFromFavorites,
+        //        getFavorites: getFavorites,
         addToFriends: addToFriends,
-        removeFromFriends: removeFromFriends,
-        getFriends: getFriends
+        removeFromFriends: removeFromFriends
+            //        getFriends: getFriends
     }
 });
 

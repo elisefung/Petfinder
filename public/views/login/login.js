@@ -1,5 +1,4 @@
 app.controller('LoginController', function ($scope, $http, $location, $rootScope) {
-    $scope.hello = "Hello World from Login Controller!";
 
     $scope.login = function (user) {
         console.log(user);

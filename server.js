@@ -156,6 +156,13 @@ app.get("/api/users", auth, function (req, res) {
     });
 });
 
+// get users by ID
+app.get('/api/users/:id', auth, function (req, res) {
+    users.findById(req.params.id, function (err, user) {
+        res.json(user);
+    });
+});
+
 // remove the user by ID
 app.delete("/api/users/:id", auth, function (req, res) {
     users.findById(req.params.id, function (err, user) {
@@ -171,8 +178,8 @@ app.delete("/api/users/:id", auth, function (req, res) {
 app.put("/api/users/:id", auth, function (req, res) {
     users.findById(req.params.id, function (err, user) {
         user.update(req.body, function (err, count) {
-            users.find(function (err, users) {
-                res.json(users);
+            users.findById(req.params.id, function (err, user) {
+                res.json(user);
             });
         });
     });
