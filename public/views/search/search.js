@@ -1,4 +1,5 @@
 app.controller('SearchController', function ($scope, $http, PetSearch) {
+    $scope.hello = "hello from search controller";
     $scope.query = {
         type: 'all'
     };
@@ -8,11 +9,12 @@ app.controller('SearchController', function ($scope, $http, PetSearch) {
     //            $scope.petList = response;
     //        });
 
+    $scope.petList = [];
     $scope.search = function () {
         console.log('starting search');
         PetSearch.searchForPets(function (pets) {
             $scope.petList = pets;
-            console.log($scope.petList);
+            console.log('petlist: ' + $scope.petList);
         });
     }
 

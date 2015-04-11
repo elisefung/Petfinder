@@ -78,7 +78,7 @@ app.factory('PetSearch', function PetSearch($http) {
 
     var searchForPets = function (callback) {
         console.log('searching for pets...');
-        $.getJSON('http://api.petfinder.com/pet.find?format=json&key=' + apikey + '&callback=?')
+        $.getJSON('http://api.petfinder.com/pet.getRandom?format=json&key=' + apikey + '&callback=?&output=basic')
             .success(callback);
 
     };
