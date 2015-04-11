@@ -30,41 +30,31 @@ app.controller('ProfileController', function ($scope, $http, $rootScope) {
     //        $scope.user = user;
     //    }
 
+    $http.get('/api/user/' + $rootScope.currentUser._id)
+        .success(function (user) {
+            $scope.friendsList = user.friends;
+            $scope.numberOfFriends = $scope.friendsList.length;
 
-    var currentUser = $rootScope.currentUser;
-    $scope.friendsList = currentUser.friends;
-    $scope.numberOfFriends = $scope.friendsList.length;
+            var updateFriendCount = function () {
+                $scope.numberOfFriends = $scope.friendsList.length;
+            }
 
-    var updateFriendCount = function () {
-        $scope.numberOfFriends = $scope.friendsList.length;
-    }
-
-    $scope.addToFriends = function (newFriend) {
-
-        // get the current user
-        $http.get('/api/user/' + currentUser._id)
-            .success(function (user) {
-
+            $scope.addToFriends = function (newFriend) {
                 // add the new friend to the friends array
                 user.friends.push(newFriend);
                 var updatedUser = user;
 
                 // update the current user
-                $http.put('/api/user/' + currentUser._id, updatedUser)
+                $http.put('/api/user/' + $rootScope.currentUser._id, updatedUser)
                     .success(function (user) {
 
                         // save new friend list
                         $scope.friendsList = user.friends;
                         updateFriendCount();
                     });
-            });
-    }
+            }
 
-    $scope.removeFromFriends = function (exFriend) {
-
-        // get the current user
-        $http.get('/api/user/' + currentUser._id)
-            .success(function (user) {
+            $scope.removeFromFriends = function (exFriend) {
 
                 // add the new friend to the friends array
                 var index = user.friends.indexOf(exFriend);
@@ -72,14 +62,15 @@ app.controller('ProfileController', function ($scope, $http, $rootScope) {
                 var updatedUser = user;
 
                 // update the current user
-                $http.put('/api/user/' + currentUser._id, updatedUser)
+                $http.put('/api/user/' + $rootScope.currentUser._id, updatedUser)
                     .success(function (user) {
 
                         // save new friend list
                         $scope.friendsList = user.friends;
                         updateFriendCount();
                     });
-            });
-    }
+            }
+        });
+
 
 });
