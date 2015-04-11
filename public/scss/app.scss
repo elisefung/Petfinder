@@ -1,13 +1,17 @@
 @import "settings";
 @import "foundation";
 #browse-pets {
-    .adoptable-pet {
-        .pet-image-wrap {
-            position: relative;
-            overflow: hidden;
-            height: 180px;
+    #search-results {
+        .adoptable-pet {
+            .pet-image-wrap {
+                position: relative;
+                overflow: hidden;
+                width: 100%;
+                height: 160px;
+            }
             .pet-image {
-                min-height: 180px;
+                min-width: 186px;
+                min-height: 160px;
                 position: absolute;
                 top: 0;
                 left: 0;
