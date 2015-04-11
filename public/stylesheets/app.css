@@ -9157,3 +9157,26 @@ th.hide-for-touch {
     display: table-cell !important;
   }
 }
+/* line 5, ../scss/app.scss */
+#browse-pets .adoptable-pet .pet-image-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 180px;
+}
+/* line 9, ../scss/app.scss */
+#browse-pets .adoptable-pet .pet-image-wrap .pet-image {
+  min-height: 180px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* line 16, ../scss/app.scss */
+#browse-pets .adoptable-pet .pet-heart {
+  color: lightgray;
+  padding-top: 3px;
+}
+/* line 19, ../scss/app.scss */
+#browse-pets .adoptable-pet .pet-heart:hover {
+  cursor: pointer;
+  color: pink;
+}

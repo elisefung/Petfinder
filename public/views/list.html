@@ -1,13 +1,21 @@
 <div ng-controller="ListController">
     <div class="row">
-        <h2>Popular Pets</h2>
+        <div class="small-12 columns">
+            <h2>Popular Pets</h2>
+        </div>
     </div>
-    <div id="petList" class="row">
-        <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
-            <li ng-repeat="pet in petList">
-                <img src="{{pet.picture}}" />
-                <h4 class="">{{ pet.name }}</h4>
-            </li>
-        </ul>
+    <div id="browse-pets" class="row">
+        <div class="small-12 columns">
+            <ul id="search-results" class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+                <li class="adoptable-pet" ng-repeat="pet in petList">
+                    <div class="pet-image-wrap">
+                        <img class="pet-image" src="{{pet.picture}}" />
+                    </div>
+                    <div class="pet-name">{{ pet.name }}
+                        <span class="pet-heart right icon_heart"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
