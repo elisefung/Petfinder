@@ -65,59 +65,69 @@ var baseUrl = "http://api.petfinder.com/";
 
 // Pet Search Factory
 app.factory('PetSearch', function PetSearch($http, $rootScope) {
-    //    var user = $rootScope.currentUser;
-    //    console.log('currentuser: ' + user);
-    //    // array of pet IDs
-    //    var favorites = [];
-    //
-    //    // add the given pet to the list of favorites
-    //    var addToFavorites = function (pet) {
-    //        favorites.push(pet);
-    //    };
-    //
-    //    // remove the given pet from the list of favorites
-    //    var removeFromFavorites = function (pet) {
-    //        var index = favorites.indexOf(pet);
-    //        favorites.splice(index, 1);
-    //    };
-    //
-    //    // return list of favorite pets
-    //    var getFavorites = function () {
-    //        return favorites;
-    //    };
-    //
-    //    var searchForPets = function (callback) {
-    //        console.log('searching for pets...');
-    //        $.getJSON('http://api.petfinder.com/pet.getRandom?format=json&key=' + apikey + '&callback=?&output=basic')
-    //            .success(callback);
-    //    };
+    var user = $rootScope.currentUser;
+    console.log('currentuser: ' + user);
+    // array of pet IDs
+    var favorites = [];
 
-    // array of user IDs
-    //    var friends = [];
-
-    // add the given user to the list of friends
-    var addToFriends = function (friends, user) {
-        friends.push(user);
+    // add the given pet to the list of favorites
+    var addToFavorites = function (pet) {
+        favorites.push(pet);
     };
 
-    // remove the given user from the list of friends
-    var removeFromFriends = function (friends, user) {
-        var index = friends.indexOf(user);
-        friends.splice(index, 1);
+    // remove the given pet from the list of favorites
+    var removeFromFavorites = function (pet) {
+        var index = favorites.indexOf(pet);
+        favorites.splice(index, 1);
     };
 
-    // return list of friends
-    //    var getFriends = function () {
-    //        return friends;
-    //    };
+    // return list of favorite pets
+    var getFavorites = function () {
+        return favorites;
+    };
+
+    // get(id)
+    // search(queries)
+
+    // main search with filters
+    var searchForPets = function (query, callback) {
+        var animal = query.animal;
+        var location = query.location;
+        var breed = query.breed;
+        var age = query.age;
+        var gender = query.gender;
+        var apiUrl = 'http://api.petfinder.com/pet.find?format=json&key=' + apikey + '&callback=?&output=basic';
+
+        if (animal != 'all') {
+            apiUrl += '&animal=' + animal;
+        }
+        if (location) {
+            apiUrl += '&location=' + location;
+        }
+        if (breed) {
+            apiUrl += '&breed=' + breed;
+        }
+        if (age) {
+            apiUrl += '&age=' + age;
+        }
+        if (gender) {
+            apiUrl += '&gender=' + gender;
+        }
+
+        console.log('searching for pets...');
+        $.getJSON(apiUrl)
+            .success(function (response, callback) {
+                console.log(response);
+            });
+    };
 
     return {
-        //        searchForPets: searchForPets,
-        //        addToFavorites: addToFavorites,
-        //        removeFromFavorites: removeFromFavorites,
-        //        getFavorites: getFavorites,
-        addToFriends: addToFriends,
-        removeFromFriends: removeFromFriends
+        searchForPets: searchForPets,
+        addToFavorites: addToFavorites,
+        removeFromFavorites: removeFromFavorites,
+        getFavorites: getFavorites
+            //        addToFriends: addToFriends,
+            //        removeFromFriends: removeFromFriends
             //        getFriends: getFriends
     }
 });

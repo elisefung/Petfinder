@@ -59,17 +59,17 @@
             <div class="small-12 columns">
                 <dl class="sub-nav">
                     <dt class="hide-for-small-only">Find a pet to adopt</dt>
-                    <dd class="active"><a ng-click="query.type = 'all'">All</a>
+                    <dd class="active"><a ng-click="query.animal = 'all'">All</a>
                     </dd>
-                    <dd><a ng-click="query.type = 'dogs'">Dogs</a>
+                    <dd><a ng-click="query.animal = 'dogs'">Dogs</a>
                     </dd>
-                    <dd><a ng-click="query.type = 'cats'">Cats</a>
+                    <dd><a ng-click="query.animal = 'cats'">Cats</a>
                     </dd>
-                    <dd><a ng-click="query.type = 'rabbits'">Rabbits</a>
+                    <dd><a ng-click="query.animal = 'rabbits'">Rabbits</a>
                     </dd>
-                    <dd><a ng-click="query.type = 'pigs'">Pigs</a>
+                    <dd><a ng-click="query.animal = 'pigs'">Pigs</a>
                     </dd>
-                    <dd><a ng-click="query.type = 'barnyards'">Barnyards</a>
+                    <dd><a ng-click="query.animal = 'barnyards'">Barnyards</a>
                     </dd>
                 </dl>
             </div>
@@ -104,7 +104,7 @@
                 </select>
             </div>
             <div class="small-12 medium-3 large-2 columns">
-                <a ng-click="search()" class="button expand">Find a Pet</a>
+                <a ng-click="search(query)" class="button expand">Find a Pet</a>
             </div>
         </div>
     </div>

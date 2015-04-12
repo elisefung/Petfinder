@@ -1,20 +1,21 @@
 app.controller('SearchController', function ($scope, $http, PetSearch) {
     $scope.hello = "hello from search controller";
     $scope.query = {
-        type: 'all'
+        animal: 'all'
     };
 
     //    $http.get("/api/pets")
-//        .success(function (response) {
-//            $scope.petList = response;
-//        });
+    //        .success(function (response) {
+    //            $scope.petList = response;
+    //        });
 
     $scope.petList = [];
-    $scope.search = function () {
+    $scope.search = function (query) {
         console.log('starting search');
-        PetSearch.searchForPets(function (pets) {
+        PetSearch.searchForPets(query, function (pets) {
             $scope.petList = pets;
-            console.log('petlist: ' + $scope.petList);
+            console.log('\nPets from Petsearch');
+            console.log($scope.petList);
         });
     }
 
