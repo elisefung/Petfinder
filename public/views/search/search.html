@@ -8,13 +8,13 @@
         <div class="small-12 columns">
             <ul id="search-results" class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
                 <li class="adoptable-pet" ng-repeat="pet in petList">
-                    {{petList}}
-<!--
+
+
                     <div class="pet-image-wrap">
-    <img class="pet-image" src="{{ img }}" />
-</div>
--->
-                    <div class="pet-name">{{ pet.petfinder.pet.name }}
+                        <img class="pet-image" src="{{ img }}" />
+                    </div>
+
+                    <div class="pet-name">{{ pet.name }}
                         <span class="pet-heart right icon_heart"></span>
                     </div>
                 </li>

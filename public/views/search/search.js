@@ -1,4 +1,4 @@
-app.controller('SearchController', function ($scope, $http, PetSearch) {
+app.controller('SearchController', function ($scope, $rootScope, $http, PetSearch) {
     $scope.hello = "hello from search controller";
     $scope.query = {
         animal: 'all'
@@ -9,14 +9,17 @@ app.controller('SearchController', function ($scope, $http, PetSearch) {
     //            $scope.petList = response;
     //        });
 
-    $scope.petList = [];
+    $rootScope.petList = [{
+        name: "Suzy"
+    }];
+
     $scope.search = function (query) {
         console.log('starting search');
         PetSearch.searchForPets(query, function (pets) {
-            $scope.petList = pets;
-            console.log('\nPets from Petsearch');
-            console.log($scope.petList);
+            $rootScope.petList = pets;
+            //            console.log($scope.petList);
         });
-    }
+
+    };
 
 });

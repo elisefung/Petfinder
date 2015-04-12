@@ -116,10 +116,35 @@ app.factory('PetSearch', function PetSearch($http, $rootScope) {
 
         console.log('searching for pets...');
         $.getJSON(apiUrl)
-            .success(function (response, callback) {
-                console.log(response);
+            .success(function (response) {
+                //                console.log(response);
+                var petList = [];
+                angular.forEach(response.petfinder.pets.pet, function (pet) {
+
+                    // XML -> JSON
+                    var pet = formatSingularPet(pet);
+                    //                    console.log(pet)
+                    if (pet) petList.push(pet);
+                })
+
+                callback(petList);
+
             });
     };
+
+
+    function formatSingularPet(pet) {
+        var thisPet = {};
+        angular.forEach(pet, function (value, key) {
+
+            if (value["$t"]) {
+                thisPet[key] = value["$t"];
+            }
+
+        })
+
+        return thisPet;
+    }
 
     return {
         searchForPets: searchForPets,
