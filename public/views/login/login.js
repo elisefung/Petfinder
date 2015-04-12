@@ -7,6 +7,7 @@ app.controller('LoginController', function ($scope, $http, $location, $rootScope
                 console.log(response);
                 $rootScope.currentUser = response;
                 $location.url("/profile");
+                localStorage.setItem("currentUser", response);
             });
     }
 });

@@ -7,11 +7,18 @@ app.config(['$routeProvider', function ($routeProvider, $httpProvider) {
         templateUrl: 'views/search/search.html',
         controller: 'SearchController'
     }).
-    when('/pets', {
+    when('/pet/:id', {
         templateUrl: 'views/pet/pet.html',
         controller: 'PetController'
     }).
     when('/profile', {
+        templateUrl: 'views/profile/profile.html',
+        controller: 'ProfileController',
+        resolve: {
+            loggedin: checkLoggedin
+        }
+    }).
+    when('/profile/:id', {
         templateUrl: 'views/profile/profile.html',
         controller: 'ProfileController'
     }).

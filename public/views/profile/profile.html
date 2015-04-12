@@ -5,10 +5,10 @@
             <h4>{{ currentUser.email }}</h4>
         </div>
         <div class="small-6 medium-3 columns">
-            <h4>Friends <span>( {{ numberOfFriends }} )</span></h4>
+            <h4>Friends <span>( {{ friendsList.length }} )</span></h4>
             <ul class="friends-list">
                 <li class="friend-link" ng-repeat="friend in friendsList">
-                    <a href="#">{{ friend }}</a>
+                    <a href="#">{{ friend.username }}</a>
                     <a ng-click="removeFromFriends(friend)" class="button btn-remove-friend">Remove Friend</a>
                 </li>
             </ul>
@@ -18,7 +18,7 @@
             <ul class="user-list">
                 <li class="user-link" ng-repeat="user in users">
                     <a href="#">{{ user.username }}</a>
-                    <a ng-click="addToFriends(user)" class="button btn-add-friend">Add Friend</a>
+                    <a ng-click="addToFriends(user)" ng-class="{'btn-add-friend': friendsList.indexOf(user) == -1}" class="button">Add Friend</a>
                 </li>
             </ul>
         </div>

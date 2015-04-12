@@ -156,6 +156,11 @@ app.get("/api/users", auth, function (req, res) {
     });
 });
 
+// takes an array of user IDs and returns user objects
+//app.get('/api/users/friends', auth, function(req, res) {
+//    users.
+//})
+
 // remove the user and return all users
 app.delete("/api/users/:id", auth, function (req, res) {
     users.findById(req.params.id, function (err, user) {
