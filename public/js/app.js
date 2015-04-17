@@ -1,7 +1,7 @@
 var app = angular.module('PetfinderApp', ['ngRoute']);
 
 // Configure Routing
-app.config(['$routeProvider', function ($routeProvider, $httpProvider) {
+app.config(function ($routeProvider, $httpProvider) {
     $routeProvider.
     when('/', {
         templateUrl: 'views/pet/search.html',
@@ -34,7 +34,7 @@ app.config(['$routeProvider', function ($routeProvider, $httpProvider) {
         redirectTo: '/'
     });
     $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-}]);
+});
 
 var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
     var deferred = $q.defer();
