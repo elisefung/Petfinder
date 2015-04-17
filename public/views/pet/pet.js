@@ -9,9 +9,9 @@ app.controller('PetController', function ($scope, $http, $rootScope, $routeParam
         $scope.$apply();
     });
 
-//        $scope.addToFavorites = function (pet) {
-        //        // if logged in
-        //            // PetFactory.addToFavorites(pet)
-        //        // else redirect to /login/sign up alert
-        //                    }
+    //        $scope.addToFavorites = function (pet) {
+    //        // if logged in
+    //            // PetFactory.addToFavorites(pet)
+    //        // else redirect to /login/sign up alert
+    //                    }
 });

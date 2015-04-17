@@ -8,8 +8,9 @@
     <div id="profile-favorites" class="row">
         <div class="small-12 columns">
             <h2>Favorite Pets</h2>
+
             <ul id="search-results" class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
-                <li class="adoptable-pet" ng-repeat="pet in favoritesList">
+                <li class="adoptable-pet" ng-repeat="pet in favorites">
 
                     <div class="pet-image-wrap">
                         <!--                        <img class="pet-image" src="{{ pet.media.photo[2] }}" />-->
@@ -25,9 +26,9 @@
     </div>
     <div id="profile-friends" class="row">
         <div class="small-6 medium-3 columns">
-            <h4>Friends <span>( {{ friendsList.length }} )</span></h4>
+            <h4>Friends <span>( {{ friends.length }} )</span></h4>
             <ul class="friends-list">
-                <li class="friend-link" ng-repeat="friend in friendsList">
+                <li class="friend-link" ng-repeat="friend in friends">
                     <a href="#/user/{{friend._id}}">{{ friend.username }}</a>
                     <a ng-click="removeFromFriends(friend)" class="button btn-remove-friend">Remove Friend</a>
                 </li>

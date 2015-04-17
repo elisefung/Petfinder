@@ -1,4 +1,4 @@
-app.controller('SearchController', function ($scope, $rootScope, $http, PetFactory) {
+app.controller('SearchController', function ($scope, $rootScope, $http, PetFactory, UserFactory) {
     $scope.hello = "hello from search controller";
     $scope.query = {
         location: '94024',
@@ -22,7 +22,7 @@ app.controller('SearchController', function ($scope, $rootScope, $http, PetFacto
     $scope.addToFavorites = function (pet) {
         console.log('adding pet to your favorites');
         console.log(pet);
-        PetFactory.addToFavorites(pet);
+        UserFactory.addToFavorites(pet);
     }
 
 });

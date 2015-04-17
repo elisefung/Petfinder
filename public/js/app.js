@@ -44,8 +44,8 @@ var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
         // User is Authenticated
         if (user !== '0') {
             $rootScope.currentUser = user;
-            $rootScope.currentUser.favorites = user.favorites;
-            $rootScope.currentUser.friends = user.friends;
+            //            $rootScope.currentUser.favorites = user.favorites;
+            //            $rootScope.currentUser.friends = user.friends;
             deferred.resolve();
         }
         // User is Not Authenticated
@@ -134,38 +134,38 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
             });
     };
 
-    var user = $rootScope.currentUser;
+    //    var user = $rootScope.currentUser;
+    //
+    //    // add the given pet to the current user's list of favorites
+    //    // function is only called if the user is logged in
+    //    var addToFavorites = function (pet) {
+    //
+    //        // add the pet to the current user's favorites array
+    //        user.favorites.push(pet);
+    //        var updatedUser = user;
+    //
+    //        // update the current user to the database
+    //        $http.put('/api/user/' + $rootScope.currentUser._id, updatedUser)
+    //            .success(function (user) {
+    //                console.log(user);
+    //            });
+    //    };
 
-    // add the given pet to the current user's list of favorites
-    // function is only called if the user is logged in
-    var addToFavorites = function (pet) {
-
-        // add the pet to the current user's favorites array
-        user.favorites.push(pet);
-        var updatedUser = user;
-
-        // update the current user to the database
-        $http.put('/api/user/' + $rootScope.currentUser._id, updatedUser)
-            .success(function (user) {
-                console.log(user);
-            });
-    };
-
-//    var getFavorites = function () {
-//        var favorites = [];
-//        angular.forEach(user.favorites, function (petId) {
-//            getPet(petId, function (pet) {
-//                favorites.push(pet);
-//            });
-//        });
-//        return favorites;
-//    }
+    //    var getFavorites = function () {
+    //        var favorites = [];
+    //        angular.forEach(user.favorites, function (petId) {
+    //            getPet(petId, function (pet) {
+    //                favorites.push(pet);
+    //            });
+    //        });
+    //        return favorites;
+    //    }
 
     // remove the given pet from the list of favorites
-    var removeFromFavorites = function (pet) {
-        var index = favorites.indexOf(pet);
-        favorites.splice(index, 1);
-    };
+    //    var removeFromFavorites = function (pet) {
+    //        var index = favorites.indexOf(pet);
+    //        favorites.splice(index, 1);
+    //    };
 
     // return list of favorite pets
     //    var getFavorites = function () {
@@ -174,19 +174,74 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
 
     return {
         searchForPets: searchForPets,
-        addToFavorites: addToFavorites,
-        removeFromFavorites: removeFromFavorites,
-//        getFavorites: getFavorites,
+        //        addToFavorites: addToFavorites,
+        //        removeFromFavorites: removeFromFavorites,
+        //        getFavorites: getFavorites,
         getPet: getPet
     }
 });
 
-app.factory('UserFactory', function UserFactory($http, $rootScope) {
-    var getFavorites = function (user, callback) {
-        return user.favorites;
+// User Factory Service
+app.factory('UserFactory', function UserFactory($http, $rootScope, $location, PetFactory) {
+
+    // return an array of favorite pet objects for the given user
+    var getFavorites = function (user) {
+        console.log('getting favorites');
+        var favorites = [];
+
+        angular.forEach(user.favorites, function (petId) {
+            PetFactory.getPet(petId.id, function (petObject) {
+                favorites.push(petObject);
+                $rootScope.favorites = favorites;
+                $rootScope.$apply();
+            });
+        });
+    };
+
+    var getFriends = function (user) {
+        var friends = [];
+        angular.forEach(user.friends, function (friend) {
+            $http.get('/api/user/' + friend._id)
+                .success(function (friendObject) {
+                    friends.push(friendObject);
+                    $rootScope.friends = friends;
+                });
+        });
+    };
+
+    var addToFavorites = function (newFavorite) {
+        $http.get('/loggedin').success(function (user) {
+            $rootScope.errorMessage = null;
+            // User is Authenticated
+            if (user !== '0') {
+                // add to favorites here 
+                console.log('do add to frineds stuff here');
+                console.log(newFavorite);
+
+                // add the pet to the current user's favorites array
+                user.favorites.push(newFavorite);
+                var updatedUser = user;
+
+                // update the current user to the database
+                $http.put('/api/user/' + $rootScope.currentUser._id, updatedUser)
+                    .success(function (user) {
+                        console.log(user);
+                    });
+
+            }
+            // User is Not Authenticated
+            else {
+                $rootScope.errorMessage = 'You need to log in.';
+                $location.url('/login');
+            }
+        });
     }
+
+
     return {
-        getFavorites: getFavorites
+        getFavorites: getFavorites,
+        getFriends: getFriends,
+        addToFavorites: addToFavorites
     }
 });
 

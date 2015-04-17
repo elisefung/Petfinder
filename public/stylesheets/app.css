@@ -9157,29 +9157,29 @@ th.hide-for-touch {
     display: table-cell !important;
   }
 }
-/* line 6, ../scss/app.scss */
-#browse-pets #search-results .adoptable-pet .pet-image-wrap {
+/* line 5, ../scss/app.scss */
+#search-results .adoptable-pet .pet-image-wrap {
   position: relative;
   overflow: hidden;
   width: 100%;
   height: 160px;
   background: #eee;
 }
-/* line 13, ../scss/app.scss */
-#browse-pets #search-results .adoptable-pet .pet-image {
+/* line 12, ../scss/app.scss */
+#search-results .adoptable-pet .pet-image {
   min-width: 186px;
   min-height: 160px;
   position: absolute;
   top: 0;
   left: 0;
 }
-/* line 21, ../scss/app.scss */
-#browse-pets #search-results .pet-heart {
+/* line 20, ../scss/app.scss */
+#search-results .pet-heart {
   color: lightgray;
   padding-top: 3px;
 }
-/* line 24, ../scss/app.scss */
-#browse-pets #search-results .pet-heart:hover {
+/* line 23, ../scss/app.scss */
+#search-results .pet-heart:hover {
   cursor: pointer;
   color: pink;
 }
