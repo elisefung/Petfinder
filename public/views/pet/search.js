@@ -20,8 +20,6 @@ app.controller('SearchController', function ($scope, $rootScope, $http, PetFacto
     };
 
     $scope.addToFavorites = function (pet) {
-        console.log('adding pet to your favorites');
-        console.log(pet);
         UserFactory.addToFavorites(pet);
     }
 

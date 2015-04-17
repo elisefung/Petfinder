@@ -44,8 +44,8 @@ var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
         // User is Authenticated
         if (user !== '0') {
             $rootScope.currentUser = user;
-            //            $rootScope.currentUser.favorites = user.favorites;
-            //            $rootScope.currentUser.friends = user.friends;
+            $rootScope.currentUser.favorites = user.favorites;
+            $rootScope.currentUser.friends = user.friends;
             deferred.resolve();
         }
         // User is Not Authenticated
@@ -186,7 +186,6 @@ app.factory('UserFactory', function UserFactory($http, $rootScope, $location, Pe
 
     // return an array of favorite pet objects for the given user
     var getFavorites = function (user) {
-        console.log('getting favorites');
         var favorites = [];
 
         angular.forEach(user.favorites, function (petId) {
@@ -214,18 +213,18 @@ app.factory('UserFactory', function UserFactory($http, $rootScope, $location, Pe
             $rootScope.errorMessage = null;
             // User is Authenticated
             if (user !== '0') {
-                // add to favorites here 
-                console.log('do add to frineds stuff here');
-                console.log(newFavorite);
 
                 // add the pet to the current user's favorites array
                 user.favorites.push(newFavorite);
                 var updatedUser = user;
+                console.log('updated \n');
+                console.log(updatedUser);
 
                 // update the current user to the database
-                $http.put('/api/user/' + $rootScope.currentUser._id, updatedUser)
-                    .success(function (user) {
-                        console.log(user);
+                $http.put('/api/user/' + user._id, updatedUser)
+                    .success(function (myUser) {
+                        $rootScope.currentUser = myUser;
+                        console.log(myUser);
                     });
 
             }
