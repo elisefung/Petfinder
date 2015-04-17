@@ -65,6 +65,10 @@ var apisig = "59b0c48e2afad3c8bba73b5659bf4a8d";
 // Pet Search Factory
 app.factory('PetFactory', function PetFactory($http, $rootScope) {
 
+    // store current user
+    var user = $rootScope.currentUser;
+    $rootScope.petList = [];
+
     // helper function that parses through pet XML data and returns JSON data
     function formatSingularPet(pet) {
         var thisPet = {};
@@ -131,9 +135,6 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
                 callback(petProfile);
             });
     };
-
-    // store current user
-    var user = $rootScope.currentUser;
 
     // array of pet IDs
     var favorites = [];

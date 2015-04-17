@@ -7,6 +7,7 @@ app.controller('PetController', function ($scope, $http, $rootScope, $routeParam
     // get the pet object
     PetFactory.getPet(petID, function (pet) {
         $scope.pet = pet;
+        $scope.$apply();
         console.log('\npetprofile');
         console.log($scope.pet);
     });
