@@ -17,7 +17,12 @@ app.controller('SearchController', function ($scope, $rootScope, $http, PetFacto
             $rootScope.$apply();
             console.log($scope.petList);
         });
-
     };
+
+    $scope.addToFavorites = function (pet) {
+        console.log('adding pet to your favorites');
+        console.log(pet);
+        PetFactory.addToFavorites(pet);
+    }
 
 });

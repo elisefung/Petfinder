@@ -66,8 +66,6 @@ var apisig = "59b0c48e2afad3c8bba73b5659bf4a8d";
 // Pet Search Factory
 app.factory('PetFactory', function PetFactory($http, $rootScope) {
 
-    // store current user
-    var user = $rootScope.currentUser;
     $rootScope.petList = [];
 
     // helper function that parses through pet XML data and returns JSON data
@@ -84,7 +82,6 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
 
         });
         return thisPet;
-
     };
 
     // sends a request to the Petfinder API with search queries from the search controller
@@ -137,13 +134,32 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
             });
     };
 
-    // array of pet IDs
-    var favorites = [];
+    var user = $rootScope.currentUser;
 
-    // add the given pet to the list of favorites
+    // add the given pet to the current user's list of favorites
+    // function is only called if the user is logged in
     var addToFavorites = function (pet) {
-        favorites.push(pet);
+
+        // add the pet to the current user's favorites array
+        user.favorites.push(pet);
+        var updatedUser = user;
+
+        // update the current user to the database
+        $http.put('/api/user/' + $rootScope.currentUser._id, updatedUser)
+            .success(function (user) {
+                console.log(user);
+            });
     };
+
+//    var getFavorites = function () {
+//        var favorites = [];
+//        angular.forEach(user.favorites, function (petId) {
+//            getPet(petId, function (pet) {
+//                favorites.push(pet);
+//            });
+//        });
+//        return favorites;
+//    }
 
     // remove the given pet from the list of favorites
     var removeFromFavorites = function (pet) {
@@ -152,44 +168,59 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
     };
 
     // return list of favorite pets
-    var getFavorites = function () {
-        return favorites;
-    };
+    //    var getFavorites = function () {
+    //        return favorites;
+    //    };
 
     return {
         searchForPets: searchForPets,
         addToFavorites: addToFavorites,
         removeFromFavorites: removeFromFavorites,
-        getFavorites: getFavorites,
+//        getFavorites: getFavorites,
         getPet: getPet
     }
 });
 
-// User Search Factory
-//app.factory('UserSearch', function UserSearch($http, $rootScope) {
+app.factory('UserFactory', function UserFactory($http, $rootScope) {
+    var getFavorites = function (user, callback) {
+        return user.favorites;
+    }
+    return {
+        getFavorites: getFavorites
+    }
+});
+
+// User Factory
+//app.factory('UserFactory', function UserFactory($http, $rootScope) {
 //
-//    // array of user IDs
-//    var friends = $rootScope.friends;
+//    // store current user
+//    var currentUser = $rootScope.currentUser;
 //
-//    // add the given user to the list of friends
-//    var addToFriends = function (user) {
-//        friends.push(user);
+//    // return list of current user's friends
+//    var getFriends = function (user, callback) {
+////        console.log('the user is\n');
+////        console.log(user);
+//        //        var friendsList = [];
+//        //        angular.forEach(user.friends, function (friend) {
+//        //            $http.get('/api/user/' + friend._id)
+//        //                .success(function (friendObject) {
+//        //                    friendsList.push(friendObject);
+//        //                });
+//        //        });
+//        //        console.log(friendsList);
 //    };
 //
-//    // remove the given user from the list of friends
-//    var removeFromFriends = function (user) {
-//        var index = friends.indexOf(user);
-//        friends.splice(index, 1);
-//    };
-//
-//    // return list of friends
-//    var getFriends = function () {
-//        return friends;
-//    };
+//    // return a single user object
+//    //    var getFriend = function (friendID, callback) {
+//    //        $.getJSON('http://api.petfinder.com/pet.get?format=json&key=' + apikey + '&callback=?&id=' + petID)
+//    //            .success(function (response) {
+//    //                var petProfile = formatSingularPet(response.petfinder.pet);
+//    //                callback(petProfile);
+//    //            });
+//    //    };
 //
 //    return {
-//        addToFriends: addToFriends,
-//        removeFromFriends: removeFromFriends,
 //        getFriends: getFriends
+//            //        getFriend: getFriend
 //    }
 //});

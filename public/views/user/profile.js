@@ -1,5 +1,7 @@
 // Controller for Profile
-app.controller('ProfileController', function ($scope, $http, $rootScope) {
+app.controller('ProfileController', function ($scope, $http, $rootScope, PetFactory) {
+
+    $scope.user = $rootScope.currentUser;
 
     // get all users
     $http.get('/api/users')
@@ -7,12 +9,27 @@ app.controller('ProfileController', function ($scope, $http, $rootScope) {
             $scope.users = users;
         });
 
+    $scope.favoritesList = $scope.user.favorites;
+
     // get the current user object
-    $http.get('/api/user/' + $rootScope.currentUser._id)
+    $http.get('/api/user/' + $scope.user._id)
         .success(function (user) {
 
             $scope.friendsList = [];
             $scope.numberOfFriends = $scope.friendsList.length;
+            $scope.favoritesList = [];
+
+            var getFavorites = function () {
+                $scope.favoritesList = [];
+                angular.forEach(user.favorites, function (pet) {
+                    PetFactory.getPet(pet.id, function (petObject) {
+                        $scope.favoritesList.push(petObject);
+                    });
+                });
+            };
+
+            getFavorites();
+
 
             // parse through array of friend IDs and return array of friend objects
             var getFriends = function () {
@@ -70,6 +87,4 @@ app.controller('ProfileController', function ($scope, $http, $rootScope) {
             };
 
         });
-
-
 });

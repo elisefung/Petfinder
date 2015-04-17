@@ -61,7 +61,7 @@ var UserSchema = new mongoose.Schema({
     password: String,
     favorites: [{
         id: String
-        }],
+    }],
     friends: [{
         id: String
     }]
@@ -101,7 +101,6 @@ passport.deserializeUser(function (user, done) {
 app.post('/login', passport.authenticate('local'), function (req, res) {
     console.log('hello ' + req.user);
     var user = req.user;
-    console.log(user);
     res.json(user);
 });
 
@@ -155,11 +154,6 @@ app.get("/api/users", auth, function (req, res) {
         res.json(users);
     });
 });
-
-// takes an array of user IDs and returns user objects
-//app.get('/api/users/friends', auth, function(req, res) {
-//    users.
-//})
 
 // remove the user and return all users
 app.delete("/api/users/:id", auth, function (req, res) {
