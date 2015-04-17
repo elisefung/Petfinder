@@ -33,6 +33,7 @@ app.config(['$routeProvider', function ($routeProvider, $httpProvider) {
     otherwise({
         redirectTo: '/'
     });
+    $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 }]);
 
 var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
