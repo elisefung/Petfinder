@@ -12,13 +12,13 @@
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/controllers.js"></script>
+    <script src="js/app.js"></script>
+    <script src="views/nav/nav.js"></script>
     <script src="views/login/login.js"></script>
     <script src="views/signup/signup.js"></script>
-    <script src="views/nav/nav.js"></script>
-    <script src="views/profile/profile.js"></script>
-    <script src="views/search/search.js"></script>
+    <script src="views/pet/search.js"></script>
+    <script src="views/pet/pet.js"></script>
+    <script src="views/user/profile.js"></script>
 </head>
 
 <body ng-app="PetfinderApp">
@@ -38,7 +38,7 @@
                     <li class="has-dropdown" ng-show="$root.currentUser">
                         <a>Hi, {{ currentUser.username }}</a>
                         <ul class="dropdown">
-                            <li><a href="#/profile">Profile</a>
+                            <li><a href="#/user">Profile</a>
                             </li>
                             <li><a ng-click="logout()">Log out</a>
                             </li>
@@ -50,65 +50,6 @@
                 </ul>
             </section>
         </nav>
-    </div>
-
-    <div ng-controller="SearchController">
-        <div id="animalFilter" class="row">
-            <div class="small-12 columns show-for-small-only text-center">
-                <h4 id="filterLabel">Find a pet to adopt</h4>
-            </div>
-            <div class="small-12 columns">
-                <dl class="sub-nav">
-                    <dt class="hide-for-small-only">Find a pet to adopt</dt>
-                    <dd class="active"><a ng-click="query.animal = 'all'">All</a>
-                    </dd>
-                    <dd><a ng-click="query.animal = 'dogs'">Dogs</a>
-                    </dd>
-                    <dd><a ng-click="query.animal = 'cats'">Cats</a>
-                    </dd>
-                    <dd><a ng-click="query.animal = 'rabbits'">Rabbits</a>
-                    </dd>
-                    <dd><a ng-click="query.animal = 'pigs'">Pigs</a>
-                    </dd>
-                    <dd><a ng-click="query.animal = 'barnyards'">Barnyards</a>
-                    </dd>
-                </dl>
-            </div>
-        </div>
-
-
-        <div id="refineFilter" class="row">
-            <div class="small-12 medium-2 large-3 columns">
-                <input ng-model="query.location" type="text" placeholder="Location" />
-            </div>
-            <div class="small-12 medium-3 large-3 columns">
-                <select ng-model="query.breed" id="breed">
-                    <option value="">Breed</option>
-                    <option value="chow-chow">Chow Chow</option>
-                    <option value="golden-retriever">Golden Retriever</option>
-                    <option value="english-bulldog">English Bulldog</option>
-                </select>
-            </div>
-            <div class="small-6 medium-2 large-2 columns">
-                <select ng-model="query.age" id="age">
-                    <option value="">Age</option>
-                    <option value="baby">Baby</option>
-                    <option value="young">Young</option>
-                    <option value="adult">Adult</option>
-                    <option value="senior">Senior</option>
-                </select>
-            </div>
-            <div class="small-6 medium-2 large-2 columns">
-                <select ng-model="query.gender" id="gender">
-                    <option value="">Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
-            </div>
-            <div class="small-12 medium-3 large-2 columns">
-                <a ng-click="search(query)" class="button expand">Find a Pet</a>
-            </div>
-        </div>
     </div>
 
     <div ng-view>

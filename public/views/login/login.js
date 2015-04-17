@@ -1,3 +1,4 @@
+// Controller for logging in a user
 app.controller('LoginController', function ($scope, $http, $location, $rootScope) {
 
     $scope.login = function (user) {
@@ -6,7 +7,7 @@ app.controller('LoginController', function ($scope, $http, $location, $rootScope
             .success(function (response) {
                 console.log(response);
                 $rootScope.currentUser = response;
-                $location.url("/profile");
+                $location.url("/user");
                 localStorage.setItem("currentUser", response);
             });
     }

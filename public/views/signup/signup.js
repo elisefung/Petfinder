@@ -8,7 +8,7 @@ app.controller('SignupController', function ($scope, $http, $location, $rootScop
                 console.log(response);
                 if (response != null) {
                     $rootScope.currentUser = response;
-                    $location.url("/profile");
+                    $location.url("/user");
                 } else {
                     $scope.message = "Oops, it looks like you already have an account";
                 }

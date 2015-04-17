@@ -4,22 +4,22 @@ var app = angular.module('PetfinderApp', ['ngRoute']);
 app.config(['$routeProvider', function ($routeProvider, $httpProvider) {
     $routeProvider.
     when('/', {
-        templateUrl: 'views/search/search.html',
+        templateUrl: 'views/pet/search.html',
         controller: 'SearchController'
     }).
     when('/pet/:id', {
         templateUrl: 'views/pet/pet.html',
         controller: 'PetController'
     }).
-    when('/profile', {
-        templateUrl: 'views/profile/profile.html',
+    when('/user', {
+        templateUrl: 'views/user/profile.html',
         controller: 'ProfileController',
         resolve: {
             loggedin: checkLoggedin
         }
     }).
-    when('/profile/:id', {
-        templateUrl: 'views/profile/profile.html',
+    when('/user/:id', {
+        templateUrl: 'views/user/profile.html',
         controller: 'ProfileController'
     }).
     when('/login', {
@@ -58,15 +58,75 @@ var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
     return deferred.promise;
 };
 
-// API data
+// API keys
 var apikey = "5ac1149d1668e6e3cfb18d3556ef8d79";
 var apisig = "59b0c48e2afad3c8bba73b5659bf4a8d";
 var baseUrl = "http://api.petfinder.com/";
 
 // Pet Search Factory
-app.factory('PetSearch', function PetSearch($http, $rootScope) {
+app.factory('PetFactory', function PetFactory($http, $rootScope) {
+
+    // sends a request to the Petfinder API with search queries from the search controller
+    var searchForPets = function (query, callback) {
+        var animal = query.animal;
+        var location = query.location;
+        var breed = query.breed;
+        var age = query.age;
+        var gender = query.gender;
+        var apiUrl = 'http://api.petfinder.com/pet.find?format=json&key=' + apikey + '&callback=?&output=basic';
+
+        // append filters if applicable
+        if (animal != 'all') {
+            apiUrl += '&animal=' + animal;
+        }
+        if (location) {
+            apiUrl += '&location=' + location;
+        }
+        if (breed) {
+            apiUrl += '&breed=' + breed;
+        }
+        if (age) {
+            apiUrl += '&age=' + age;
+        }
+        if (gender) {
+            apiUrl += '&sex=' + gender;
+        }
+
+        console.log('searching for pets...');
+        $.getJSON(apiUrl)
+            .success(function (response) {
+                var petList = [];
+                angular.forEach(response.petfinder.pets.pet, function (pet) {
+                    // Convert XML -> JSON
+                    var pet = formatSingularPet(pet);
+                    if (pet) petList.push(pet);
+                })
+
+                // return petList of JSON objects
+                callback(petList);
+            });
+    };
+
+    // helper function that parses through pet XML data and returns JSON data
+    function formatSingularPet(pet) {
+        var thisPet = {};
+        angular.forEach(pet, function (value, key) {
+
+            if (value["$t"]) {
+                thisPet[key] = value["$t"];
+            }
+            if (value["photos"]) {
+                thisPet[key] = value["photos"]
+            }
+
+        });
+
+        return thisPet;
+    };
+
+    // store current user
     var user = $rootScope.currentUser;
-    console.log('currentuser: ' + user);
+
     // array of pet IDs
     var favorites = [];
 
@@ -86,74 +146,18 @@ app.factory('PetSearch', function PetSearch($http, $rootScope) {
         return favorites;
     };
 
-    // get(id)
-    // search(queries)
+    // return pet object
+    var getPet = function () {
 
-    // main search with filters
-    var searchForPets = function (query, callback) {
-        var animal = query.animal;
-        var location = query.location;
-        var breed = query.breed;
-        var age = query.age;
-        var gender = query.gender;
-        var apiUrl = 'http://api.petfinder.com/pet.find?format=json&key=' + apikey + '&callback=?&output=basic';
-
-        if (animal != 'all') {
-            apiUrl += '&animal=' + animal;
-        }
-        if (location) {
-            apiUrl += '&location=' + location;
-        }
-        if (breed) {
-            apiUrl += '&breed=' + breed;
-        }
-        if (age) {
-            apiUrl += '&age=' + age;
-        }
-        if (gender) {
-            apiUrl += '&gender=' + gender;
-        }
-
-        console.log('searching for pets...');
-        $.getJSON(apiUrl)
-            .success(function (response) {
-                //                console.log(response);
-                var petList = [];
-                angular.forEach(response.petfinder.pets.pet, function (pet) {
-
-                    // XML -> JSON
-                    var pet = formatSingularPet(pet);
-                    //                    console.log(pet)
-                    if (pet) petList.push(pet);
-                })
-
-                callback(petList);
-
-            });
-    };
-
-
-    function formatSingularPet(pet) {
-        var thisPet = {};
-        angular.forEach(pet, function (value, key) {
-
-            if (value["$t"]) {
-                thisPet[key] = value["$t"];
-            }
-
-        })
-
-        return thisPet;
     }
+
+
 
     return {
         searchForPets: searchForPets,
         addToFavorites: addToFavorites,
         removeFromFavorites: removeFromFavorites,
         getFavorites: getFavorites
-            //        addToFriends: addToFriends,
-            //        removeFromFriends: removeFromFriends
-            //        getFriends: getFriends
     }
 });
 
