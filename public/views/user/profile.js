@@ -1,4 +1,4 @@
-// Controller for 
+// Controller for Profile
 app.controller('ProfileController', function ($scope, $http, $rootScope) {
 
     // get all users

@@ -61,10 +61,26 @@ var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
 // API keys
 var apikey = "5ac1149d1668e6e3cfb18d3556ef8d79";
 var apisig = "59b0c48e2afad3c8bba73b5659bf4a8d";
-var baseUrl = "http://api.petfinder.com/";
 
 // Pet Search Factory
 app.factory('PetFactory', function PetFactory($http, $rootScope) {
+
+    // helper function that parses through pet XML data and returns JSON data
+    function formatSingularPet(pet) {
+        var thisPet = {};
+        angular.forEach(pet, function (value, key) {
+
+            if (value["$t"]) {
+                thisPet[key] = value["$t"];
+            }
+            if (value["photos"]) {
+                thisPet[key] = value["photos"]
+            }
+
+        });
+        return thisPet;
+
+    };
 
     // sends a request to the Petfinder API with search queries from the search controller
     var searchForPets = function (query, callback) {
@@ -107,21 +123,13 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
             });
     };
 
-    // helper function that parses through pet XML data and returns JSON data
-    function formatSingularPet(pet) {
-        var thisPet = {};
-        angular.forEach(pet, function (value, key) {
-
-            if (value["$t"]) {
-                thisPet[key] = value["$t"];
-            }
-            if (value["photos"]) {
-                thisPet[key] = value["photos"]
-            }
-
-        });
-
-        return thisPet;
+    // return a single pet object
+    var getPet = function (petID, callback) {
+        $.getJSON('http://api.petfinder.com/pet.get?format=json&key=' + apikey + '&callback=?&id=' + petID)
+            .success(function (response) {
+                var petProfile = formatSingularPet(response.petfinder.pet);
+                callback(petProfile);
+            });
     };
 
     // store current user
@@ -146,18 +154,12 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
         return favorites;
     };
 
-    // return pet object
-    var getPet = function () {
-
-    }
-
-
-
     return {
         searchForPets: searchForPets,
         addToFavorites: addToFavorites,
         removeFromFavorites: removeFromFavorites,
-        getFavorites: getFavorites
+        getFavorites: getFavorites,
+        getPet: getPet
     }
 });
 
