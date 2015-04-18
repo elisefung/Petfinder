@@ -134,49 +134,8 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
             });
     };
 
-    //    var user = $rootScope.currentUser;
-    //
-    //    // add the given pet to the current user's list of favorites
-    //    // function is only called if the user is logged in
-    //    var addToFavorites = function (pet) {
-    //
-    //        // add the pet to the current user's favorites array
-    //        user.favorites.push(pet);
-    //        var updatedUser = user;
-    //
-    //        // update the current user to the database
-    //        $http.put('/api/user/' + $rootScope.currentUser._id, updatedUser)
-    //            .success(function (user) {
-    //                console.log(user);
-    //            });
-    //    };
-
-    //    var getFavorites = function () {
-    //        var favorites = [];
-    //        angular.forEach(user.favorites, function (petId) {
-    //            getPet(petId, function (pet) {
-    //                favorites.push(pet);
-    //            });
-    //        });
-    //        return favorites;
-    //    }
-
-    // remove the given pet from the list of favorites
-    //    var removeFromFavorites = function (pet) {
-    //        var index = favorites.indexOf(pet);
-    //        favorites.splice(index, 1);
-    //    };
-
-    // return list of favorite pets
-    //    var getFavorites = function () {
-    //        return favorites;
-    //    };
-
     return {
         searchForPets: searchForPets,
-        //        addToFavorites: addToFavorites,
-        //        removeFromFavorites: removeFromFavorites,
-        //        getFavorites: getFavorites,
         getPet: getPet
     }
 });
@@ -216,9 +175,6 @@ app.factory('UserFactory', function UserFactory($http, $rootScope, $location, Pe
 
                 // add the pet to the current user's favorites array
                 $rootScope.currentUser.favorites.push(newFavorite);
-                //                var updatedUser = $rootScope.currentUser;
-                //                console.log('updated \n');
-                //                console.log(updatedUser);
 
                 // update the current user to the database
                 $http.put('/api/user/' + $rootScope.currentUser._id, $rootScope.currentUser)
@@ -233,24 +189,9 @@ app.factory('UserFactory', function UserFactory($http, $rootScope, $location, Pe
         });
     };
 
-    var addToFriends = function (user, newFriend) {
-
-        // add the friend to the current user's friends array
-        user.friends.push(newFriend);
-        //                var updatedUser = $rootScope.currentUser;
-        //                console.log('updated \n');
-        //                console.log(updatedUser);
-
-        // update the current user to the database
-        $http.put('/api/user/' + user._id, user)
-            .success(function (myUser) {});
-
-    };
-
     return {
         getFavorites: getFavorites,
         getFriends: getFriends,
-        addToFavorites: addToFavorites,
-        addToFriends: addToFriends
+        addToFavorites: addToFavorites
     }
 });
