@@ -9168,55 +9168,81 @@ body {
   letter-spacing: 0.06em;
 }
 
-/* line 7, ../scss/app.scss */
+/* line 6, ../scss/app.scss */
+#filterLabelSmall {
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: #CFC4B3;
+  padding: 7px 0;
+  letter-spacing: 0.1em;
+}
+
+/* line 14, ../scss/app.scss */
 #animalFilter {
   background-color: #FDDC76;
 }
-/* line 9, ../scss/app.scss */
+/* line 16, ../scss/app.scss */
 #animalFilter #filterLabel {
+  display: inline-block;
   background-color: #CFC4B3;
-  margin-left: 0;
-  padding-left: 15%;
+  padding: 6px 20px 7px 20px;
+  padding-left: 300px;
+  left: 0;
+  margin-left: -285px;
+  position: absolute;
 }
-/* line 14, ../scss/app.scss */
+/* line 24, ../scss/app.scss */
+#animalFilter #filterLabel span {
+  color: white;
+  font-weight: 700;
+}
+/* line 29, ../scss/app.scss */
 #animalFilter .sub-nav {
+  margin-left: 218px;
   margin-bottom: 0;
   padding-top: 0;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
-/* line 19, ../scss/app.scss */
+@media only screen and (max-width: 40em) {
+  /* line 29, ../scss/app.scss */
+  #animalFilter .sub-nav {
+    margin-left: 0px;
+  }
+}
+/* line 38, ../scss/app.scss */
 #animalFilter .sub-nav dt {
   background-color: #CFC4B3;
   font-weight: 700;
   margin-left: 0;
-  padding: 8px 15px;
+  padding: 8px 20px;
 }
-/* line 25, ../scss/app.scss */
+/* line 44, ../scss/app.scss */
 #animalFilter .sub-nav dd {
   margin-left: 0;
-  margin-right: 0.7rem;
+  margin-right: 0;
   padding: 8px 0;
 }
-/* line 29, ../scss/app.scss */
+/* line 48, ../scss/app.scss */
 #animalFilter .sub-nav dd.active {
   background-color: #FB876E;
   margin-right: 0;
 }
-/* line 32, ../scss/app.scss */
+/* line 51, ../scss/app.scss */
 #animalFilter .sub-nav dd.active:hover {
   background-color: #fa7255;
 }
-/* line 34, ../scss/app.scss */
+/* line 53, ../scss/app.scss */
 #animalFilter .sub-nav dd.active:hover a {
   background-color: #fa7255;
 }
-/* line 39, ../scss/app.scss */
+/* line 58, ../scss/app.scss */
 #animalFilter .sub-nav dd:hover {
   background-color: #FB876E;
 }
 
-/* line 48, ../scss/app.scss */
+/* line 68, ../scss/app.scss */
 #pets-list .adoptable-pet .image-wrap {
   position: relative;
   overflow: hidden;
@@ -9224,7 +9250,7 @@ body {
   height: 160px;
   background: url("img/cat.jpeg") #eee center center;
 }
-/* line 54, ../scss/app.scss */
+/* line 74, ../scss/app.scss */
 #pets-list .adoptable-pet .image-wrap .image {
   min-width: 186px;
   min-height: 160px;
@@ -9232,12 +9258,12 @@ body {
   top: 0;
   left: 0;
 }
-/* line 63, ../scss/app.scss */
+/* line 83, ../scss/app.scss */
 #pets-list .btn-like {
   color: lightgray;
   padding-top: 3px;
 }
-/* line 66, ../scss/app.scss */
+/* line 86, ../scss/app.scss */
 #pets-list .btn-like:hover {
   cursor: pointer;
   color: pink;

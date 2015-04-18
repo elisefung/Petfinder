@@ -3,28 +3,47 @@
 body {
     letter-spacing: 0.06em;
 }
-
+#filterLabelSmall {
+        color: white;
+        font-weight: 700;
+        text-transform: uppercase;
+        background-color: $brown;
+        padding: 7px 0;
+        letter-spacing: 0.1em;
+    }
 #animalFilter {
     background-color: $yellow;
     #filterLabel {
+        display: inline-block;
         background-color: $brown;
-        margin-left: 0;
-        padding-left: 15%;
+        padding: 6px 20px 7px 20px;
+        padding-left: 300px;
+        left: 0;
+        margin-left: -285px;
+        position: absolute;
+        span {
+            color: white;
+            font-weight: 700;
+        }
     }
     .sub-nav {
+        margin-left: 218px;
         margin-bottom: 0;
         padding-top: 0;
         text-transform: uppercase;
         letter-spacing: 0.1em;
+        @media #{$small-only} {
+            margin-left: 0px;
+        }
         dt {
             background-color: $brown;
             font-weight: 700;
             margin-left: 0;
-            padding: 8px 15px;
+            padding: 8px 20px;
         }
         dd {
             margin-left: 0;
-            margin-right: 0.7rem;
+            margin-right: 0;
             padding: 8px 0;
             &.active {
                 background-color: $primary-color;
@@ -39,6 +58,7 @@ body {
             &:hover {
                 background-color: $primary-color;
             }
+            
         }
     }
 }

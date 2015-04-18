@@ -1,13 +1,18 @@
 <div ng-controller="SearchController">
     <section id="animalFilter">
-        <div class="row">
-            <div class="small-12 columns show-for-small-only text-center">
-                <h4 id="filterLabel">Find a pet to adopt</h4>
+        <div id="filterLabelSmall" class="show-for-small-only">
+            <div class="row">
+                <div class="small-12 columns text-center">
+                    <span>Find a pet to adopt</span>
+                </div>
             </div>
+        </div>
+        <div class="row">
+            
             <div class="small-12 columns">
                 <dl class="sub-nav">
-                    <div class="filterLabel"><span>Find a pet to adopt</span></div>
-<!--                    <dt class="hide-for-small-only">Find a pet to adopt</dt>-->
+                    <div id="filterLabel" class="filterLabel hide-for-small-only"><span>Find a pet to adopt</span>
+                    </div>
                     <dd class="active"><a ng-click="query.animal = 'all'; getBreeds('dog')">All</a>
                     </dd>
                     <dd><a ng-click="query.animal = 'dog'; getBreeds('dog')">Dogs</a>
