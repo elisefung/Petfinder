@@ -68,14 +68,6 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
 
     $rootScope.petList = [];
 
-    //    function formatSingularBreed(breed) {
-    //        var thisBreed = "";
-    //        angular.forEach(breed, function (value) {
-    //                thisBreed = value["$t"];
-    //        })
-    //        return thisBreed;
-    //    }
-
     // helper function that parses through pet XML data and returns JSON data
     function formatSingularPet(pet) {
         var thisPet = {};
@@ -86,12 +78,24 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
             if (value["photos"]) {
 
                 thisPet["image"] = getImage(value["photos"]["photo"]);
-
+            }
+            if (value["breed"]) {
+                thisPet["breed"] = getBreed(value["breed"]);
             }
 
         });
         return thisPet;
     };
+
+    function getBreed(value) {
+        var breed = "";
+        if (value["$t"]) {
+            breed = value["$t"];
+        } else {
+            breed = value[0]["$t"];
+        }
+        return breed;
+    }
 
     function getImage(array) {
         var img = "";
@@ -135,6 +139,7 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
                 var petList = [];
                 angular.forEach(response.petfinder.pets.pet, function (pet) {
                     // Convert XML -> JSON
+                    console.log(pet);
                     var pet = formatSingularPet(pet);
                     if (pet) petList.push(pet);
                 })
