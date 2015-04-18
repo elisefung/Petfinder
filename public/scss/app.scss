@@ -1,6 +1,47 @@
 @import "settings";
 @import "foundation";
+body {
+    letter-spacing: 0.06em;
+}
 
+#animalFilter {
+    background-color: $yellow;
+    #filterLabel {
+        background-color: $brown;
+        margin-left: 0;
+        padding-left: 15%;
+    }
+    .sub-nav {
+        margin-bottom: 0;
+        padding-top: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        dt {
+            background-color: $brown;
+            font-weight: 700;
+            margin-left: 0;
+            padding: 8px 15px;
+        }
+        dd {
+            margin-left: 0;
+            margin-right: 0.7rem;
+            padding: 8px 0;
+            &.active {
+                background-color: $primary-color;
+                margin-right: 0;
+                &:hover {
+                    background-color: darken($primary-color, 5%);
+                    a {
+                        background-color: darken($primary-color, 5%);
+                    }
+                }
+            }
+            &:hover {
+                background-color: $primary-color;
+            }
+        }
+    }
+}
 
 #pets-list {
     .adoptable-pet {

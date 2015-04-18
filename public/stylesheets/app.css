@@ -9163,7 +9163,60 @@ th.hide-for-touch {
     display: table-cell !important;
   }
 }
+/* line 3, ../scss/app.scss */
+body {
+  letter-spacing: 0.06em;
+}
+
 /* line 7, ../scss/app.scss */
+#animalFilter {
+  background-color: #FDDC76;
+}
+/* line 9, ../scss/app.scss */
+#animalFilter #filterLabel {
+  background-color: #CFC4B3;
+  margin-left: 0;
+  padding-left: 15%;
+}
+/* line 14, ../scss/app.scss */
+#animalFilter .sub-nav {
+  margin-bottom: 0;
+  padding-top: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+/* line 19, ../scss/app.scss */
+#animalFilter .sub-nav dt {
+  background-color: #CFC4B3;
+  font-weight: 700;
+  margin-left: 0;
+  padding: 8px 15px;
+}
+/* line 25, ../scss/app.scss */
+#animalFilter .sub-nav dd {
+  margin-left: 0;
+  margin-right: 0.7rem;
+  padding: 8px 0;
+}
+/* line 29, ../scss/app.scss */
+#animalFilter .sub-nav dd.active {
+  background-color: #FB876E;
+  margin-right: 0;
+}
+/* line 32, ../scss/app.scss */
+#animalFilter .sub-nav dd.active:hover {
+  background-color: #fa7255;
+}
+/* line 34, ../scss/app.scss */
+#animalFilter .sub-nav dd.active:hover a {
+  background-color: #fa7255;
+}
+/* line 39, ../scss/app.scss */
+#animalFilter .sub-nav dd:hover {
+  background-color: #FB876E;
+}
+
+/* line 48, ../scss/app.scss */
 #pets-list .adoptable-pet .image-wrap {
   position: relative;
   overflow: hidden;
@@ -9171,7 +9224,7 @@ th.hide-for-touch {
   height: 160px;
   background: url("img/cat.jpeg") #eee center center;
 }
-/* line 13, ../scss/app.scss */
+/* line 54, ../scss/app.scss */
 #pets-list .adoptable-pet .image-wrap .image {
   min-width: 186px;
   min-height: 160px;
@@ -9179,12 +9232,12 @@ th.hide-for-touch {
   top: 0;
   left: 0;
 }
-/* line 22, ../scss/app.scss */
+/* line 63, ../scss/app.scss */
 #pets-list .btn-like {
   color: lightgray;
   padding-top: 3px;
 }
-/* line 25, ../scss/app.scss */
+/* line 66, ../scss/app.scss */
 #pets-list .btn-like:hover {
   cursor: pointer;
   color: pink;

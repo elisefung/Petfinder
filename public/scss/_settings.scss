@@ -1005,8 +1005,7 @@ $sub-nav-font-color-hover: white;
 // We use these to control the active item styles
 // $sub-nav-active-font-weight: $font-weight-normal;
 $sub-nav-active-bg: $primary-color;
-$sub-nav-active-bg-hover: darken($primary-color,
-5%);
+$sub-nav-active-bg-hover: darken($primary-color, 5%);
 // $sub-nav-active-color: $white;
 // $sub-nav-active-padding: $sub-nav-padding;
 // $sub-nav-active-cursor: default;
@@ -1124,7 +1123,7 @@ $topbar-bg: $topbar-bg-color;
 // $topbar-margin-bottom: 0;
 // Controlling the styles for the title in the top bar
 // $topbar-title-weight: $font-weight-normal;
- $topbar-title-font-size: rem-calc(20);
+$topbar-title-font-size: rem-calc(20);
 // Set the link colors and styles for top-level nav
 $topbar-link-color: $body-font-color;
 $topbar-link-color-hover: $primary-color;
