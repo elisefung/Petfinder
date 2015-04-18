@@ -26,9 +26,9 @@
     </div>
     <div id="profile-friends" class="row">
         <div class="small-6 medium-3 columns">
-            <h4>Friends <span>( {{ friends.length }} )</span></h4>
+            <h4>Friends <span>( {{ friendsList.length }} )</span></h4>
             <ul class="friends-list">
-                <li class="friend-link" ng-repeat="friend in friends">
+                <li class="friend-link" ng-repeat="friend in friendsList">
                     <a href="#/user/{{friend._id}}">{{ friend.username }}</a>
                     <a ng-click="removeFromFriends(friend)" class="button btn-remove-friend">Remove Friend</a>
                 </li>

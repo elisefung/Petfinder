@@ -231,46 +231,26 @@ app.factory('UserFactory', function UserFactory($http, $rootScope, $location, Pe
                 $location.url('/login');
             }
         });
-    }
+    };
+
+    var addToFriends = function (user, newFriend) {
+
+        // add the friend to the current user's friends array
+        user.friends.push(newFriend);
+        //                var updatedUser = $rootScope.currentUser;
+        //                console.log('updated \n');
+        //                console.log(updatedUser);
+
+        // update the current user to the database
+        $http.put('/api/user/' + user._id, user)
+            .success(function (myUser) {});
+
+    };
 
     return {
         getFavorites: getFavorites,
         getFriends: getFriends,
-        addToFavorites: addToFavorites
+        addToFavorites: addToFavorites,
+        addToFriends: addToFriends
     }
 });
-
-// User Factory
-//app.factory('UserFactory', function UserFactory($http, $rootScope) {
-//
-//    // store current user
-//    var currentUser = $rootScope.currentUser;
-//
-//    // return list of current user's friends
-//    var getFriends = function (user, callback) {
-////        console.log('the user is\n');
-////        console.log(user);
-//        //        var friendsList = [];
-//        //        angular.forEach(user.friends, function (friend) {
-//        //            $http.get('/api/user/' + friend._id)
-//        //                .success(function (friendObject) {
-//        //                    friendsList.push(friendObject);
-//        //                });
-//        //        });
-//        //        console.log(friendsList);
-//    };
-//
-//    // return a single user object
-//    //    var getFriend = function (friendID, callback) {
-//    //        $.getJSON('http://api.petfinder.com/pet.get?format=json&key=' + apikey + '&callback=?&id=' + petID)
-//    //            .success(function (response) {
-//    //                var petProfile = formatSingularPet(response.petfinder.pet);
-//    //                callback(petProfile);
-//    //            });
-//    //    };
-//
-//    return {
-//        getFriends: getFriends
-//            //        getFriend: getFriend
-//    }
-//});
