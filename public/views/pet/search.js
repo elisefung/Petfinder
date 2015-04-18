@@ -15,6 +15,7 @@ app.controller('SearchController', function ($scope, $rootScope, $http, PetFacto
         PetFactory.searchForPets(query, function (pets) {
             $rootScope.petList = pets;
             $rootScope.$apply();
+            console.log('this is pet list\n');
             console.log($scope.petList);
         });
     };

@@ -77,12 +77,25 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
                 thisPet[key] = value["$t"];
             }
             if (value["photos"]) {
-                thisPet[key] = value["photos"]
+
+                thisPet["image"] = getImage(value["photos"]["photo"]);
+
             }
 
         });
         return thisPet;
     };
+
+    function getImage(array) {
+        var img = "";
+        angular.forEach(array, function (photo) {
+            if (photo["@size"] == 'pn') {
+                img = photo['$t'];
+            }
+        })
+
+        return (img) ? img : "../../stylesheets/img/sloth.jpg";
+    }
 
     // sends a request to the Petfinder API with search queries from the search controller
     var searchForPets = function (query, callback) {
@@ -116,6 +129,7 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
                 var petList = [];
                 angular.forEach(response.petfinder.pets.pet, function (pet) {
                     // Convert XML -> JSON
+                    console.log(pet);
                     var pet = formatSingularPet(pet);
                     if (pet) petList.push(pet);
                 })
