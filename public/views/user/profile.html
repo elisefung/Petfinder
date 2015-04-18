@@ -13,12 +13,14 @@
                 <li class="adoptable-pet" ng-repeat="pet in favorites">
 
                     <div class="pet-image-wrap">
-                        <!--                        <img class="pet-image" src="{{ pet.media.photo[2] }}" />-->
+                        <img class="pet-image" ng-src="{{ pet.image }}" />
                     </div>
 
                     <div class="pet-name">
                         <a href="#/pet/{{pet.id}}">{{ pet.name }}</a>
                         <span ng-click="removeFromFavorites(pet)" class="pet-heart right icon_heart"></span>
+
+                        <p class="pet-breed">{{pet.breed}}</p>
                     </div>
                 </li>
             </ul>

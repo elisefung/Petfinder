@@ -1,11 +1,14 @@
 // Controller for Profile
 app.controller('ProfileController', function ($scope, $http, $rootScope, UserFactory) {
-
     // get all users
     $http.get('/api/users')
         .success(function (users) {
             $scope.users = users;
         });
+
+    $scope.removeFromFavorites = function (unFavorite) {
+        UserFactory.removeFromFavorites(unFavorite);
+    }
 
     $http.get('/api/user/' + $rootScope.currentUser._id)
         .success(function (user) {

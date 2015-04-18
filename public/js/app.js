@@ -70,7 +70,9 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
 
     // helper function that parses through pet XML data and returns JSON data
     function formatSingularPet(pet) {
-        var thisPet = {};
+        var thisPet = {
+            "isFavorite": false
+        };
         angular.forEach(pet, function (value, key) {
             if (value["$t"]) {
                 thisPet[key] = value["$t"];
@@ -139,7 +141,6 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
                 var petList = [];
                 angular.forEach(response.petfinder.pets.pet, function (pet) {
                     // Convert XML -> JSON
-                    console.log(pet);
                     var pet = formatSingularPet(pet);
                     if (pet) petList.push(pet);
                 })
@@ -212,12 +213,16 @@ app.factory('UserFactory', function UserFactory($http, $rootScope, $location, Pe
             // User is Authenticated
             if (checkUser !== '0') {
 
-                // add the pet to the current user's favorites array
-                $rootScope.currentUser.favorites.push(newFavorite);
+                newFavorite["isFavorite"] = true;
+                $http.get('/api/user/' + $rootScope.currentUser._id)
+                    .success(function (user) {
 
-                // update the current user to the database
-                $http.put('/api/user/' + $rootScope.currentUser._id, $rootScope.currentUser)
-                    .success(function (myUser) {});
+                        // add the pet to the current user's favorites array
+                        user.favorites.push(newFavorite);
+                        // update the current user to the database
+                        $http.put('/api/user/' + $rootScope.currentUser._id, user)
+                            .success(function (myUser) {});
+                    });
             }
 
             // User is Not Authenticated
@@ -228,9 +233,29 @@ app.factory('UserFactory', function UserFactory($http, $rootScope, $location, Pe
         });
     };
 
+    var removeFromFavorites = function (unFavorite) {
+        $http.get('/api/user/' + $rootScope.currentUser._id)
+            .success(function (user) {
+                console.log('unfavorite \n');
+                console.log(unFavorite);
+                // remove the pet from the current user
+                var index = user.favorites.indexOf(unFavorite);
+                console.log('index \n');
+                console.log(index);
+                user.favorites.splice(index, 1);
+
+                // update the current user to the database
+                $http.put('/api/user/' + $rootScope.currentUser._id, user)
+                    .success(function (myUser) {
+                        $rootScope.currentUser = myUser;
+                    });
+            });
+    };
+
     return {
         getFavorites: getFavorites,
         getFriends: getFriends,
-        addToFavorites: addToFavorites
+        addToFavorites: addToFavorites,
+        removeFromFavorites: removeFromFavorites
     }
 });

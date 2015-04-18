@@ -67,8 +67,9 @@
 
                     <div class="pet-name">
                         <a href="#/pet/{{pet.id}}">{{ pet.name }}</a>
+                        <span ng-if="!pet.isFavorite" ng-click="addToFavorites(pet)" class="pet-heart right icon_heart_alt"></span>
+                        <span ng-if="pet.isFavorite" ng-click="removeFromFavorites(pet)" class="pet-heart right icon_heart"></span>
                         <p class="pet-breed">{{pet.breed}}</p>
-                        <span ng-click="addToFavorites(pet)" class="pet-heart right icon_heart"></span>
                     </div>
                 </li>
             </ul>
