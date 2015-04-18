@@ -1,11 +1,11 @@
 <div ng-controller="ProfileController">
     <div id="profile-banner" class="row">
         <div class="small-12 columns">
-            <h2>{{ user.username }}</h2>
-            <h4>{{ user.email }}</h4>
+            <h2>{{ currentUser.username }}</h2>
+            <h4>{{ currentUser.email }}</h4>
         </div>
     </div>
-    <div id="profile-favorites" class="row">
+    <div id="profile-favorites" class="row" ng-show="favorites.length > 0">
         <div class="small-12 columns">
             <h2>Favorite Pets</h2>
 
@@ -41,8 +41,7 @@
             <ul class="user-list">
                 <li class="user-link" ng-repeat="user in users">
                     <a href="#/user/{{user._id}}">{{ user.username }}</a>
-                    <a ng-click="addToFriends(user)" ng-class="{'btn-add-friend': friendsList.indexOf(user) == -1}" class="button">Add Friend</a>
-                    <a ng-click="addToFriends(user)" ng-class="{'btn-add-friend': friendsList.indexOf(user) == -1}" class="button">Add Friend</a>
+                    <a ng-click="addToFriends(user)" ng-class="{'btn-add-friend': friendsList.indexOf(user) == -1}" class="button btn-add-friend">Add Friend</a>
                 </li>
             </ul>
         </div>

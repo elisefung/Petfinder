@@ -28,20 +28,22 @@ app.controller('ProfileController', function ($scope, $http, $rootScope, UserFac
 
             // add the given friend to the current user's friend list
             $scope.addToFriends = function (newFriend) {
+                if (user.friends.indexOf(newFriend._id) == -1) {
+                    // add the new friend to the friends array
+                    user.friends.push(newFriend._id);
+                    var updatedUser = user;
 
-                // add the new friend to the friends array
-                user.friends.push(newFriend._id);
-                var updatedUser = user;
+                    // update the current user to the database
+                    $http.put('/api/user/' + user._id, updatedUser)
+                        .success(function (user) {
 
-                // update the current user to the database
-                $http.put('/api/user/' + user._id, updatedUser)
-                    .success(function (user) {
-
-                        // update the local friend list
-                        $scope.friendsList = user.friends;
-                        getFriends();
-                    });
+                            // update the local friend list
+                            $scope.friendsList = user.friends;
+                            getFriends();
+                        });
+                }
             };
+
 
             // remove the given friend from the current user's friend list
             $scope.removeFromFriends = function (exFriend) {
