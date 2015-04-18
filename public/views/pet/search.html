@@ -6,17 +6,17 @@
         <div class="small-12 columns">
             <dl class="sub-nav">
                 <dt class="hide-for-small-only">Find a pet to adopt</dt>
-                <dd class="active"><a ng-click="query.animal = 'all'">All</a>
+                <dd class="active"><a ng-click="query.animal = 'all'; getBreeds('dog')">All</a>
                 </dd>
-                <dd><a ng-click="query.animal = 'dog'">Dogs</a>
+                <dd><a ng-click="query.animal = 'dog'; getBreeds('dog')">Dogs</a>
                 </dd>
-                <dd><a ng-click="query.animal = 'cat'">Cats</a>
+                <dd><a ng-click="query.animal = 'cat'; getBreeds('cat')">Cats</a>
                 </dd>
-                <dd><a ng-click="query.animal = 'rabbit'">Rabbits</a>
+                <dd><a ng-click="query.animal = 'rabbit'; getBreeds('rabbit')">Rabbits</a>
                 </dd>
-                <dd><a ng-click="query.animal = 'pig'">Pigs</a>
+                <dd><a ng-click="query.animal = 'pig'; getBreeds('pig')">Pigs</a>
                 </dd>
-                <dd><a ng-click="query.animal = 'barnyard'">Barnyards</a>
+                <dd><a ng-click="query.animal = 'barnyard'; getBreeds('barnyard')">Barnyards</a>
                 </dd>
             </dl>
         </div>
@@ -29,9 +29,7 @@
         <div class="small-12 medium-3 large-3 columns">
             <select ng-model="query.breed" id="breed">
                 <option value="">Breed</option>
-                <option value="chow-chow">Chow Chow</option>
-                <option value="golden-retriever">Golden Retriever</option>
-                <option value="english-bulldog">English Bulldog</option>
+                <option ng-repeat="breed in breedList" value="{{breed}}">{{breed}}</option>
             </select>
         </div>
         <div class="small-6 medium-2 large-2 columns">
@@ -69,6 +67,7 @@
 
                     <div class="pet-name">
                         <a href="#/pet/{{pet.id}}">{{ pet.name }}</a>
+                        <p class="pet-breed">{{pet.breed}}</p>
                         <span ng-click="addToFavorites(pet)" class="pet-heart right icon_heart"></span>
                     </div>
                 </li>

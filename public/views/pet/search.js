@@ -12,13 +12,25 @@ app.controller('SearchController', function ($scope, $rootScope, $http, PetFacto
         age: 'young'
     };
 
+    $scope.getBreeds = function (animal) {
+        console.log(animal);
+        PetFactory.getBreeds(animal, function (breeds) {
+            $scope.breedList = breeds;
+            $scope.$apply();
+        });
+    }
+
     // initializing the petList
     // eventually default this list with popular pets
     $rootScope.petList = [];
     PetFactory.searchForPets($scope.popular, function (pets) {
         $rootScope.petList = pets;
+        console.log($rootScope.petList);
         $rootScope.$apply();
     });
+    PetFactory.getBreeds('dog', function (breeds) {
+        $scope.breedList = breeds;
+    })
 
     // call the request to the Petfinder API 
     $scope.search = function (query) {

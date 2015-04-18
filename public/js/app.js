@@ -68,6 +68,14 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
 
     $rootScope.petList = [];
 
+    //    function formatSingularBreed(breed) {
+    //        var thisBreed = "";
+    //        angular.forEach(breed, function (value) {
+    //                thisBreed = value["$t"];
+    //        })
+    //        return thisBreed;
+    //    }
+
     // helper function that parses through pet XML data and returns JSON data
     function formatSingularPet(pet) {
         var thisPet = {};
@@ -122,19 +130,31 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
             apiUrl += '&sex=' + gender;
         }
 
-        console.log('searching for pets...');
         $.getJSON(apiUrl)
             .success(function (response) {
                 var petList = [];
                 angular.forEach(response.petfinder.pets.pet, function (pet) {
                     // Convert XML -> JSON
-                    console.log(pet);
                     var pet = formatSingularPet(pet);
                     if (pet) petList.push(pet);
                 })
 
                 // return petList of JSON objects
                 callback(petList);
+            });
+    };
+
+    var getBreeds = function (animal, callback) {
+        $.getJSON('http://api.petfinder.com/breed.list?format=json&key=' + apikey + '&callback=?&animal=' + animal)
+            .success(function (response) {
+                var breedList = [];
+                angular.forEach(response.petfinder.breeds.breed, function (breed) {
+                    var breed = breed["$t"];
+                    if (breed) breedList.push(breed);
+                })
+
+                // return petList of JSON objects
+                callback(breedList);
             });
     };
 
@@ -149,7 +169,8 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
 
     return {
         searchForPets: searchForPets,
-        getPet: getPet
+        getPet: getPet,
+        getBreeds: getBreeds
     }
 });
 
