@@ -9163,7 +9163,7 @@ th.hide-for-touch {
   overflow: hidden;
   width: 100%;
   height: 160px;
-  background: #eee;
+  background: url("img/sloth.jpg") #eee center center;
 }
 /* line 12, ../scss/app.scss */
 #search-results .adoptable-pet .pet-image {

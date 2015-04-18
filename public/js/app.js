@@ -72,7 +72,6 @@ app.factory('PetFactory', function PetFactory($http, $rootScope) {
     function formatSingularPet(pet) {
         var thisPet = {};
         angular.forEach(pet, function (value, key) {
-
             if (value["$t"]) {
                 thisPet[key] = value["$t"];
             }
