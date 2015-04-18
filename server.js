@@ -59,9 +59,9 @@ var UserSchema = new mongoose.Schema({
     username: String,
     email: String,
     password: String,
-    favorites: [{
-        id: String
-    }],
+    favorites: [
+        String
+    ],
     friends: [{
         id: String
     }]

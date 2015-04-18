@@ -188,7 +188,7 @@ app.factory('UserFactory', function UserFactory($http, $rootScope, $location, Pe
         var favorites = [];
 
         angular.forEach(user.favorites, function (petId) {
-            PetFactory.getPet(petId.id, function (petObject) {
+            PetFactory.getPet(petId, function (petObject) {
                 favorites.push(petObject);
                 $rootScope.favorites = favorites;
                 $rootScope.$apply();
@@ -218,7 +218,7 @@ app.factory('UserFactory', function UserFactory($http, $rootScope, $location, Pe
                     .success(function (user) {
 
                         // add the pet to the current user's favorites array
-                        user.favorites.push(newFavorite);
+                        user.favorites.push(newFavorite.id);
                         // update the current user to the database
                         $http.put('/api/user/' + $rootScope.currentUser._id, user)
                             .success(function (myUser) {});
@@ -236,10 +236,9 @@ app.factory('UserFactory', function UserFactory($http, $rootScope, $location, Pe
     var removeFromFavorites = function (unFavorite) {
         $http.get('/api/user/' + $rootScope.currentUser._id)
             .success(function (user) {
-                console.log('unfavorite \n');
-                console.log(unFavorite);
                 // remove the pet from the current user
-                var index = user.favorites.indexOf(unFavorite);
+                //                var pet =
+                var index = user.favorites.indexOf(unFavorite.id);
                 console.log('index \n');
                 console.log(index);
                 user.favorites.splice(index, 1);
