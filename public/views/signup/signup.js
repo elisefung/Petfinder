@@ -1,5 +1,7 @@
 app.controller('SignupController', function ($scope, $http, $location, $rootScope) {
 
+    $scope.message = "Already have an account? "
+
     $scope.signup = function (user) {
         console.log(user);
 
@@ -10,7 +12,7 @@ app.controller('SignupController', function ($scope, $http, $location, $rootScop
                     $rootScope.currentUser = response;
                     $location.url("/user");
                 } else {
-                    $scope.message = "Oops, it looks like you already have an account";
+                    $scope.message = "Oops, it looks like you already have an account. ";
                 }
             });
     }
