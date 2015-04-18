@@ -1,78 +1,83 @@
 <div ng-controller="SearchController">
-    <div id="animalFilter" class="row">
-        <div class="small-12 columns show-for-small-only text-center">
-            <h4 id="filterLabel">Find a pet to adopt</h4>
+    <section id="animalFilter">
+        <div class="row">
+            <div class="small-12 columns show-for-small-only text-center">
+                <h4 id="filterLabel">Find a pet to adopt</h4>
+            </div>
+            <div class="small-12 columns">
+                <dl class="sub-nav">
+                    <dt class="hide-for-small-only">Find a pet to adopt</dt>
+                    <dd class="active"><a ng-click="query.animal = 'all'; getBreeds('dog')">All</a>
+                    </dd>
+                    <dd><a ng-click="query.animal = 'dog'; getBreeds('dog')">Dogs</a>
+                    </dd>
+                    <dd><a ng-click="query.animal = 'cat'; getBreeds('cat')">Cats</a>
+                    </dd>
+                    <dd><a ng-click="query.animal = 'rabbit'; getBreeds('rabbit')">Rabbits</a>
+                    </dd>
+                    <dd><a ng-click="query.animal = 'pig'; getBreeds('pig')">Pigs</a>
+                    </dd>
+                    <dd><a ng-click="query.animal = 'barnyard'; getBreeds('barnyard')">Barnyards</a>
+                    </dd>
+                </dl>
+            </div>
         </div>
-        <div class="small-12 columns">
-            <dl class="sub-nav">
-                <dt class="hide-for-small-only">Find a pet to adopt</dt>
-                <dd class="active"><a ng-click="query.animal = 'all'; getBreeds('dog')">All</a>
-                </dd>
-                <dd><a ng-click="query.animal = 'dog'; getBreeds('dog')">Dogs</a>
-                </dd>
-                <dd><a ng-click="query.animal = 'cat'; getBreeds('cat')">Cats</a>
-                </dd>
-                <dd><a ng-click="query.animal = 'rabbit'; getBreeds('rabbit')">Rabbits</a>
-                </dd>
-                <dd><a ng-click="query.animal = 'pig'; getBreeds('pig')">Pigs</a>
-                </dd>
-                <dd><a ng-click="query.animal = 'barnyard'; getBreeds('barnyard')">Barnyards</a>
-                </dd>
-            </dl>
-        </div>
-    </div>
+    </section>
 
-    <div id="refineFilter" class="row">
-        <div class="small-12 medium-2 large-3 columns">
-            <input ng-model="query.location" type="text" placeholder="Location" />
+    <section id="refineFilter">
+        <div class="row">
+            <div class="small-12 medium-2 large-3 columns">
+                <input ng-model="query.location" type="text" placeholder="Location" />
+            </div>
+            <div class="small-12 medium-3 large-3 columns">
+                <select ng-model="query.breed" id="breed">
+                    <option value="">Breed</option>
+                    <option ng-repeat="breed in breedList" value="{{breed}}">{{breed}}</option>
+                </select>
+            </div>
+            <div class="small-6 medium-2 large-2 columns">
+                <select ng-model="query.age" id="age">
+                    <option value="">Age</option>
+                    <option value="baby">Baby</option>
+                    <option value="young">Young</option>
+                    <option value="adult">Adult</option>
+                    <option value="senior">Senior</option>
+                </select>
+            </div>
+            <div class="small-6 medium-2 large-2 columns">
+                <select ng-model="query.gender" id="gender">
+                    <option value="">Gender</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+            <div class="small-12 medium-3 large-2 columns">
+                <a ng-click="search(query)" class="button expand">Find a Pet</a>
+            </div>
         </div>
-        <div class="small-12 medium-3 large-3 columns">
-            <select ng-model="query.breed" id="breed">
-                <option value="">Breed</option>
-                <option ng-repeat="breed in breedList" value="{{breed}}">{{breed}}</option>
-            </select>
-        </div>
-        <div class="small-6 medium-2 large-2 columns">
-            <select ng-model="query.age" id="age">
-                <option value="">Age</option>
-                <option value="baby">Baby</option>
-                <option value="young">Young</option>
-                <option value="adult">Adult</option>
-                <option value="senior">Senior</option>
-            </select>
-        </div>
-        <div class="small-6 medium-2 large-2 columns">
-            <select ng-model="query.gender" id="gender">
-                <option value="">Gender</option>
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-            </select>
-        </div>
-        <div class="small-12 medium-3 large-2 columns">
-            <a ng-click="search(query)" class="button expand">Find a Pet</a>
-        </div>
-    </div>
+    </section>
 
     <!--    List of pet search results-->
-    <div id="browse-pets" class="row" ng-show="petList.length > 0">
-        <div class="small-12 columns">
-            <h2>{{ searchTitle }}</h2>
-            <ul id="search-results" class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
-                <li class="adoptable-pet" ng-repeat="pet in petList">
-
-
-                    <div class="pet-image-wrap">
-                        <img class="pet-image" ng-src="{{ pet.image }}" />
-                    </div>
-
-                    <div class="pet-name">
-                        <a href="#/pet/{{pet.id}}">{{ pet.name }}</a>
-                        <span ng-if="!pet.isFavorite" ng-click="addToFavorites(pet)" class="pet-heart right icon_heart_alt"></span>
-                        <span ng-if="pet.isFavorite" ng-click="removeFromFavorites(pet)" class="pet-heart right icon_heart"></span>
-                        <p class="pet-breed">{{pet.breed}}</p>
-                    </div>
-                </li>
-            </ul>
+    <section id="browse-pets">
+        <div class="row" ng-show="petList.length > 0">
+            <div class="small-12 columns">
+                <h2>{{ searchTitle }}</h2>
+                <ul id="pets-list" class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+                    <li class="adoptable-pet" ng-repeat="pet in petList">
+                        <div class="image-wrap">
+                            <a href="#/pet/{{pet.id}}">
+                                <img class="image" ng-src="{{ pet.image }}" />
+                            </a>
+                        </div>
+                        <div class="name">
+                            <a href="#/pet/{{pet.id}}">{{ pet.name }}</a>
+                            <span ng-if="!pet.isFavorite" ng-click="addToFavorites(pet)" class="btn-like right icon_heart_alt"></span>
+                            <span ng-if="pet.isFavorite" ng-click="removeFromFavorites(pet)" class="btn-like right icon_heart"></span>
+                            <p class="breed">{{pet.breed}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </section>
 </div>

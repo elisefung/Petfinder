@@ -1,50 +1,54 @@
-<div ng-controller="ProfileController">
-    <div id="profile-banner" class="row">
-        <div class="small-12 columns">
-            <h2>{{ currentUser.username }}</h2>
-            <h4>{{ currentUser.email }}</h4>
+<div class="user-profile" ng-controller="ProfileController">
+    <section id="banner">
+        <div class="row">
+            <div class="small-12 columns">
+                <h2 class="name">{{ currentUser.username }}</h2>
+            </div>
         </div>
-    </div>
-    <div id="profile-favorites" class="row" ng-show="favorites.length > 0">
-        <div class="small-12 columns">
-            <h2>Favorite Pets</h2>
+    </section>
+    <section id="favorites">
+        <div class="row" ng-show="favorites.length > 0">
+            <div class="small-12 columns">
+                <h2>Favorite Pets</h2>
 
-            <ul id="search-results" class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
-                <li class="adoptable-pet" ng-repeat="pet in favorites">
-
-                    <div class="pet-image-wrap">
-                        <img class="pet-image" ng-src="{{ pet.image }}" />
-                    </div>
-
-                    <div class="pet-name">
-                        <a href="#/pet/{{pet.id}}">{{ pet.name }}</a>
-                        <span ng-click="removeFromFavorites(pet)" class="pet-heart right icon_heart"></span>
-
-                        <p class="pet-breed">{{pet.breed}}</p>
-                    </div>
-                </li>
-            </ul>
+                <ul id="search-results" class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+                    <li class="adoptable-pet" ng-repeat="pet in petList">
+                        <div class="image-wrap">
+                            <a href="#/pet/{{pet.id}}">
+                                <img class="image" ng-src="{{ pet.image }}" />
+                            </a>
+                        </div>
+                        <div class="name">
+                            <a href="#/pet/{{pet.id}}">{{ pet.name }}</a>
+                            <span ng-if="!pet.isFavorite" ng-click="addToFavorites(pet)" class="btn-like right icon_heart_alt"></span>
+                            <span ng-if="pet.isFavorite" ng-click="removeFromFavorites(pet)" class="btn-like right icon_heart"></span>
+                            <p class="breed">{{pet.breed}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div id="profile-friends" class="row">
-        <div class="small-6 medium-3 columns">
-            <h4>Friends <span>( {{ friendsList.length }} )</span></h4>
-            <ul class="friends-list">
-                <li class="friend-link" ng-repeat="friend in friendsList">
-                    <a href="#/user/{{friend._id}}">{{ friend.username }}</a>
-                    <a ng-click="removeFromFriends(friend)" class="button btn-remove-friend">Remove Friend</a>
-                </li>
-            </ul>
+    </section>
+    <section id="friends">
+        <div class="row">
+            <div class="small-6 medium-3 columns">
+                <h4>Friends <span>( {{ friendsList.length }} )</span></h4>
+                <ul class="no-bullet friends-list">
+                    <li class="link" ng-repeat="friend in friendsList">
+                        <a class="name">{{ friend.username }}</a>
+                        <a ng-click="removeFromFriends(friend)" class="button btn-remove">Remove Friend</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="small-6 medium-3 columns">
+                <h4>Find Friends</h4>
+                <ul class="no-bullet users-list">
+                    <li class="link" ng-repeat="user in users">
+                        <a class="name">{{ user.username }}</a>
+                        <a ng-click="addToFriends(user)" ng-class="{'btn-add-friend': friendsList.indexOf(user) == -1}" class="button btn-add">Add Friend</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="small-6 medium-3 columns">
-            <h4>Find Friends</h4>
-            <ul class="user-list">
-                <li class="user-link" ng-repeat="user in users">
-                    <a href="#/user/{{user._id}}">{{ user.username }}</a>
-                    <a ng-click="addToFriends(user)" ng-class="{'btn-add-friend': friendsList.indexOf(user) == -1}" class="button btn-add-friend">Add Friend</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
+    </section>
 </div>
