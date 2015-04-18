@@ -1,13 +1,24 @@
 app.controller('SearchController', function ($scope, $rootScope, $http, PetFactory, UserFactory) {
     $scope.hello = "hello from search controller";
+    $scope.searchTitle = "Popular Pets";
     $scope.query = {
         location: '94024',
         animal: 'all'
+    };
+    $scope.popular = {
+        location: '94024',
+        animal: 'all',
+        gender: 'M',
+        age: 'young'
     };
 
     // initializing the petList
     // eventually default this list with popular pets
     $rootScope.petList = [];
+    PetFactory.searchForPets($scope.popular, function (pets) {
+        $rootScope.petList = pets;
+        $rootScope.$apply();
+    });
 
     // call the request to the Petfinder API 
     $scope.search = function (query) {
@@ -15,9 +26,12 @@ app.controller('SearchController', function ($scope, $rootScope, $http, PetFacto
         PetFactory.searchForPets(query, function (pets) {
             $rootScope.petList = pets;
             $rootScope.$apply();
-            console.log('this is pet list\n');
-            console.log($scope.petList);
         });
+        if (query.animal == 'all') {
+            $scope.searchTitle = "pets near " + query.location;
+        } else {
+            $scope.searchTitle = query.animal + 's near ' + query.location;
+        }
     };
 
     $scope.addToFavorites = function (pet) {

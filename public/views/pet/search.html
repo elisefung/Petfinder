@@ -56,13 +56,9 @@
     </div>
 
     <!--    List of pet search results-->
-    <div class="row">
+    <div id="browse-pets" class="row" ng-show="petList.length > 0">
         <div class="small-12 columns">
-            <h2>Browse Pets</h2>
-        </div>
-    </div>
-    <div id="browse-pets" class="row">
-        <div class="small-12 columns">
+            <h2>{{ searchTitle }}</h2>
             <ul id="search-results" class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
                 <li class="adoptable-pet" ng-repeat="pet in petList">
 
