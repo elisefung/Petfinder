@@ -36,7 +36,7 @@
                     <li><a href="#/login" ng-show="!$root.currentUser">Log in</a>
                     </li>
                     <li class="has-dropdown" ng-show="$root.currentUser">
-                        <a>Hi, {{ currentUser.username }}</a>
+                        <a class="user-greeting">Hi, {{ currentUser.username }}</a>
                         <ul class="dropdown">
                             <li><a href="#/user">Profile</a>
                             </li>
@@ -45,7 +45,6 @@
                         </ul>
                     </li>
                     <li><a href="#/signup" ng-show="!$root.currentUser">Sign up</a>
-
                     </li>
                 </ul>
             </section>

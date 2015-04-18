@@ -64,11 +64,11 @@
                 <h2>{{ searchTitle }}</h2>
                 <ul id="pets-list" class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
                     <li class="adoptable-pet" ng-repeat="pet in petList">
-                        <div class="image-wrap">
-                            <a href="#/pet/{{pet.id}}">
-                                <img class="image" ng-src="{{ pet.image }}" />
-                            </a>
-                        </div>
+                        <a href="#/pet/{{pet.id}}">
+                            <div class="image-wrap" style="background: #eee url('{{pet.image}}') center center;">&nbsp;</div>
+                        </a>
+
+
                         <div class="name">
                             <a href="#/pet/{{pet.id}}">{{ pet.name }}</a>
                             <span ng-if="!pet.isFavorite" ng-click="addToFavorites(pet)" class="btn-like right icon_heart_alt"></span>
