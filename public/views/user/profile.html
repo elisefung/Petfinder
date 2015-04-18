@@ -42,6 +42,7 @@
                 <li class="user-link" ng-repeat="user in users">
                     <a href="#/user/{{user._id}}">{{ user.username }}</a>
                     <a ng-click="addToFriends(user)" ng-class="{'btn-add-friend': friendsList.indexOf(user) == -1}" class="button">Add Friend</a>
+                    <a ng-click="addToFriends(user)" ng-class="{'btn-add-friend': friendsList.indexOf(user) == -1}" class="button">Add Friend</a>
                 </li>
             </ul>
         </div>
