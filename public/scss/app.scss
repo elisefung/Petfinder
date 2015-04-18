@@ -3,7 +3,9 @@
 body {
     letter-spacing: 0.06em;
 }
-#filterLabelSmall {
+#animalFilter {
+    background-color: $yellow;
+    #filterLabelSmall {
         color: white;
         font-weight: 700;
         text-transform: uppercase;
@@ -11,8 +13,6 @@ body {
         padding: 7px 0;
         letter-spacing: 0.1em;
     }
-#animalFilter {
-    background-color: $yellow;
     #filterLabel {
         display: inline-block;
         background-color: $brown;
@@ -60,6 +60,15 @@ body {
             }
             
         }
+    }
+}
+
+#refineFilter {
+    background: $tan;
+    padding-top: 15px;
+    .button {
+        margin: 0;
+        line-height: 4px;
     }
 }
 

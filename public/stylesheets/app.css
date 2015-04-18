@@ -9169,18 +9169,17 @@ body {
 }
 
 /* line 6, ../scss/app.scss */
-#filterLabelSmall {
+#animalFilter {
+  background-color: #FDDC76;
+}
+/* line 8, ../scss/app.scss */
+#animalFilter #filterLabelSmall {
   color: white;
   font-weight: 700;
   text-transform: uppercase;
   background-color: #CFC4B3;
   padding: 7px 0;
   letter-spacing: 0.1em;
-}
-
-/* line 14, ../scss/app.scss */
-#animalFilter {
-  background-color: #FDDC76;
 }
 /* line 16, ../scss/app.scss */
 #animalFilter #filterLabel {
@@ -9242,7 +9241,18 @@ body {
   background-color: #FB876E;
 }
 
-/* line 68, ../scss/app.scss */
+/* line 66, ../scss/app.scss */
+#refineFilter {
+  background: #F6F5E8;
+  padding-top: 15px;
+}
+/* line 69, ../scss/app.scss */
+#refineFilter .button {
+  margin: 0;
+  line-height: 4px;
+}
+
+/* line 77, ../scss/app.scss */
 #pets-list .adoptable-pet .image-wrap {
   position: relative;
   overflow: hidden;
@@ -9250,7 +9260,7 @@ body {
   height: 160px;
   background: url("img/cat.jpeg") #eee center center;
 }
-/* line 74, ../scss/app.scss */
+/* line 83, ../scss/app.scss */
 #pets-list .adoptable-pet .image-wrap .image {
   min-width: 186px;
   min-height: 160px;
@@ -9258,12 +9268,12 @@ body {
   top: 0;
   left: 0;
 }
-/* line 83, ../scss/app.scss */
+/* line 92, ../scss/app.scss */
 #pets-list .btn-like {
   color: lightgray;
   padding-top: 3px;
 }
-/* line 86, ../scss/app.scss */
+/* line 95, ../scss/app.scss */
 #pets-list .btn-like:hover {
   cursor: pointer;
   color: pink;
