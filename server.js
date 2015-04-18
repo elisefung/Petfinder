@@ -207,6 +207,7 @@ app.get('/api/user/:id', auth, function (req, res) {
 // update the user and return single user
 app.put('/api/user/:id', auth, function (req, res) {
     users.findById(req.params.id, function (err, user) {
+
         user.update(req.body, function (err, count) {
             users.findById(req.params.id, function (err, user) {
                 res.json(user);
@@ -214,6 +215,8 @@ app.put('/api/user/:id', auth, function (req, res) {
         });
     });
 });
+
+
 
 // -------------------------------------------------------------------
 // PETS

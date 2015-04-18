@@ -1,7 +1,7 @@
 // Controller for Profile
 app.controller('ProfileController', function ($scope, $http, $rootScope, UserFactory) {
 
-    $scope.user = $rootScope.currentUser;
+    //    $scope.user = $rootScope.currentUser;
 
     // get all users
     $http.get('/api/users')
@@ -9,12 +9,17 @@ app.controller('ProfileController', function ($scope, $http, $rootScope, UserFac
             $scope.users = users;
         });
 
-    UserFactory.getFavorites($scope.user);
-    UserFactory.getFriends($scope.user);
+    $http.get('/api/user/' + $rootScope.currentUser._id)
+        .success(function (user) {
+            UserFactory.getFavorites(user);
+            UserFactory.getFriends(user);
 
-    $scope.addToFriends = function (newFriend) {
-        UserFactory.addToFriends(newFriend);
-    }
+            $scope.addToFriends = function (newFriend) {
+                UserFactory.addToFriends(newFriend);
+            }
+        });
+
+
 
     // get the current user object
     //    $http.get('/api/user/' + $scope.user._id)

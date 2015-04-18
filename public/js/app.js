@@ -209,25 +209,22 @@ app.factory('UserFactory', function UserFactory($http, $rootScope, $location, Pe
     };
 
     var addToFavorites = function (newFavorite) {
-        $http.get('/loggedin').success(function (user) {
+        $http.get('/loggedin').success(function (checkUser) {
             $rootScope.errorMessage = null;
             // User is Authenticated
-            if (user !== '0') {
+            if (checkUser !== '0') {
 
                 // add the pet to the current user's favorites array
-                user.favorites.push(newFavorite);
-                var updatedUser = user;
-                console.log('updated \n');
-                console.log(updatedUser);
+                $rootScope.currentUser.favorites.push(newFavorite);
+                //                var updatedUser = $rootScope.currentUser;
+                //                console.log('updated \n');
+                //                console.log(updatedUser);
 
                 // update the current user to the database
-                $http.put('/api/user/' + user._id, updatedUser)
-                    .success(function (myUser) {
-                        $rootScope.currentUser = myUser;
-                        console.log(myUser);
-                    });
-
+                $http.put('/api/user/' + $rootScope.currentUser._id, $rootScope.currentUser)
+                    .success(function (myUser) {});
             }
+
             // User is Not Authenticated
             else {
                 $rootScope.errorMessage = 'You need to log in.';
@@ -235,7 +232,6 @@ app.factory('UserFactory', function UserFactory($http, $rootScope, $location, Pe
             }
         });
     }
-
 
     return {
         getFavorites: getFavorites,
