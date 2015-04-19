@@ -137,6 +137,10 @@ body {
         margin-top: 10px;
     }
 }
+#login, #signup {
+    background: $tan;
+    padding: 120px 0;
+}
 footer {
     border-top: 2px dashed $primary-color;
     padding: 10px 0;

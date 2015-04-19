@@ -9335,12 +9335,18 @@ body {
 }
 
 /* line 140, ../scss/app.scss */
+#login, #signup {
+  background: #F6F5E8;
+  padding: 120px 0;
+}
+
+/* line 144, ../scss/app.scss */
 footer {
   border-top: 2px dashed #FB876E;
   padding: 10px 0;
   margin-top: 50px;
 }
-/* line 144, ../scss/app.scss */
+/* line 148, ../scss/app.scss */
 footer .inline-list {
   margin-bottom: 0;
 }
