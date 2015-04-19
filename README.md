@@ -1,5 +1,7 @@
 # Petfinder 
-> a simple redesign and implementation of the Petfinder website using the MEANstack and Petfinder API, for CS4550 Web Development semester project.
+a simple redesign and implementation of the Petfinder website using the MEANstack and Petfinder API 
+
+> This project was created for Jose Annunziato's CS4550 Web Development course, Spring 2015.
 
 ## Setting Up
 ```javascript
