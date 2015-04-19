@@ -3,7 +3,6 @@
         <div class="row">
             <div class="small-11 columns">
                 <h2 class="name">{{ pet.name }}</h2>
-                <p class="breed">{{ pet.breed }}</p>
             </div>
             <div class="small-1 columns">
                 <span ng-if="!pet.isFavorite" ng-click="addToFavorites(pet)" class="btn-like right icon_heart_alt"></span>
@@ -20,16 +19,16 @@
             </div>
             <div class="small-12 medium-6 columns">
                 <dl>
-                    <dt>Gender</dt>
-                    <dd>{{pet.sex}}</dd>
-                    <dt>Age</dt>
-                    <dd>{{pet.age}}</dd>
+                    <dt>Breed</dt>
+                    <dd>{{pet.breed}}</dd>
+                    <dt>Gender &amp; Age</dt>
+                    <dd>{{pet.sex}}, {{pet.age}}</dd>
                     <dt>About {{ pet.name }} </dt>
                     <dd>
                         <p class="bio">{{pet.description}}</p>
                     </dd>
                 </dl>
-                <a class="button btn-adopt">Adopt Me</a>
+                <a class="button btn-adopt">Adopt {{pet.name}}</a>
 
 
             </div>

@@ -94,8 +94,9 @@ Times,
 serif;
 // $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 // We use these to define default font weights
-// $font-weight-normal: normal;
-// $font-weight-bold: bold;
+ $font-weight-light: 300;
+ $font-weight-normal: 400;
+ $font-weight-bold: 700;
 // $white       : #FFFFFF;
 // $ghost       : #FAFAFA;
 // $snow        : #F9F9F9;
@@ -111,26 +112,26 @@ serif;
 // $monsoon     : #777777;
 // $steel       : #666666;
 // $charcoal    : #555555;
-$tuatara: #444444;
+ $tuatara: #444444;
 // $oil         : #333333;
 // $jet         : #222222;
 // $black       : #000000;
-$orange: #FB876E;
-$yellow: #FDDC76;
-$tan: #F6F5E8;
-$brown: #CFC4B3;
+ $orange: #FB876E;
+ $yellow: #FDDC76;
+ $tan: #F6F5E8;
+ $brown: #CFC4B3;
 // We use these as default colors throughout
-$primary-color: $orange;
-$secondary-color: $yellow;
+ $primary-color: $orange;
+ $secondary-color: $yellow;
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
 // We use these to control various global styles
 // $body-bg: $white;
-$body-font-color: $tuatara;
+ $body-font-color: $tuatara;
 // $body-font-family: $font-family-sans-serif;
-// $body-font-weight: $font-weight-normal;
+ $body-font-weight: $font-weight-light;
 // $body-font-style: normal;
 // We use this to control font-smoothing
 // $font-smoothing: antialiased;
@@ -214,7 +215,7 @@ $h4-font-size: rem-calc(20);
 // $small-font-color: scale-color($header-font-color, $lightness: 35%);
 // We use these to style paragraphs
 // $paragraph-font-family: inherit;
-// $paragraph-font-weight: $font-weight-normal;
+ $paragraph-font-weight: $font-weight-light;
 // $paragraph-font-size: 1rem;
 // $paragraph-line-height: 1.6;
 // $paragraph-margin-bottom: rem-calc(20);
@@ -999,15 +1000,16 @@ $select-hover-bg-color: #F8F8F8;
 $sub-nav-font-color: white;
 // $sub-nav-font-weight: $font-weight-normal;
 // $sub-nav-text-decoration: none;
-// $sub-nav-padding: rem-calc(3 16);
+ $sub-nav-padding: rem-calc(3 16);
 $sub-nav-border-radius: 0px;
 $sub-nav-font-color-hover: white;
 // We use these to control the active item styles
 // $sub-nav-active-font-weight: $font-weight-normal;
 $sub-nav-active-bg: $primary-color;
-$sub-nav-active-bg-hover: darken($primary-color, 5%);
+$sub-nav-active-bg-hover: darken($primary-color,
+5%);
 // $sub-nav-active-color: $white;
-// $sub-nav-active-padding: $sub-nav-padding;
+ $sub-nav-active-padding: $sub-nav-padding;
 // $sub-nav-active-cursor: default;
 // $sub-nav-item-divider: "";
 // $sub-nav-item-divider-margin: rem-calc(12);
@@ -1123,7 +1125,7 @@ $topbar-bg: $topbar-bg-color;
 // $topbar-margin-bottom: 0;
 // Controlling the styles for the title in the top bar
 // $topbar-title-weight: $font-weight-normal;
-$topbar-title-font-size: rem-calc(20);
+$topbar-title-font-size: rem-calc(22);
 // Set the link colors and styles for top-level nav
 $topbar-link-color: $body-font-color;
 $topbar-link-color-hover: $primary-color;
