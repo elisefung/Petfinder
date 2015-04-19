@@ -3,6 +3,9 @@
 body {
     letter-spacing: 0.06em;
 }
+#search {
+    padding-bottom: 50px;
+}
 #animalFilter {
     background-color: $yellow;
     #filterLabelSmall {
@@ -124,6 +127,9 @@ body {
         }
     }
 }
+.pet-profile {
+    padding-bottom: 50px;
+}
 #banner {
     background: $yellow;
     padding: 15px 0;
@@ -147,9 +153,24 @@ body {
 footer {
     border-top: 2px dashed $primary-color;
     padding: 10px 0;
-    margin-top: 50px;
     .inline-list {
         margin-bottom: 0;
+    }
+}
+#favorites {
+    h3 {
+        margin-bottom: 10px;
+    }
+}
+#friends {
+    background: #f8f8f8;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    h4 {
+        margin-bottom: 20px;
+    }
+    .name {
+        color: $tuatara;
     }
 }
 

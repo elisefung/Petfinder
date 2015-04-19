@@ -50,11 +50,6 @@ app.listen(app.get('port'), function () {
 // DATA OBJECT MODEL
 
 // Schemas
-var PetSchema = new mongoose.Schema({
-    name: String,
-    id: String,
-    picture: String
-});
 var UserSchema = new mongoose.Schema({
     username: String,
     email: String,
@@ -64,7 +59,6 @@ var UserSchema = new mongoose.Schema({
 });
 
 // Models
-var pets = mongoose.model('pets', PetSchema);
 var users = mongoose.model('users', UserSchema);
 
 // -------------------------------------------------------------------
@@ -209,33 +203,5 @@ app.put('/api/user/:id', auth, function (req, res) {
                 res.json(user);
             });
         });
-    });
-});
-
-
-
-// -------------------------------------------------------------------
-// PETS
-
-// Render all pets
-app.get('/api/pets', function (req, res) {
-    pets.find(function (err, docs) {
-        res.json(docs);
-    });
-});
-
-// Render one pet
-app.get('/api/pets/:id', function (req, res) {
-    pets.findById(req.params.id, function (err, doc) {
-        res.json(doc);
-    });
-});
-
-// Delete pet by ID
-app.delete('/api/pets/:id', function (req, res) {
-    pets.remove({
-        _id: req.params.id
-    }, function () {
-        res.json(docs);
     });
 });

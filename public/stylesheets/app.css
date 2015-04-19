@@ -9169,10 +9169,15 @@ body {
 }
 
 /* line 6, ../scss/app.scss */
+#search {
+  padding-bottom: 50px;
+}
+
+/* line 9, ../scss/app.scss */
 #animalFilter {
   background-color: #FDDC76;
 }
-/* line 8, ../scss/app.scss */
+/* line 11, ../scss/app.scss */
 #animalFilter #filterLabelSmall {
   color: white;
   font-weight: 700;
@@ -9181,7 +9186,7 @@ body {
   padding: 15px 0;
   letter-spacing: 0.1em;
 }
-/* line 16, ../scss/app.scss */
+/* line 19, ../scss/app.scss */
 #animalFilter #filterLabel {
   display: inline-block;
   background-color: #CFC4B3;
@@ -9193,12 +9198,12 @@ body {
   margin-left: -285px;
   position: absolute;
 }
-/* line 26, ../scss/app.scss */
+/* line 29, ../scss/app.scss */
 #animalFilter #filterLabel span {
   color: white;
   font-weight: 700;
 }
-/* line 31, ../scss/app.scss */
+/* line 34, ../scss/app.scss */
 #animalFilter .sub-nav {
   margin-left: 226px;
   margin-bottom: 0;
@@ -9207,81 +9212,81 @@ body {
   letter-spacing: 0.1em;
 }
 @media only screen and (max-width: 40em) {
-  /* line 31, ../scss/app.scss */
+  /* line 34, ../scss/app.scss */
   #animalFilter .sub-nav {
     margin-left: 0px;
   }
 }
-/* line 40, ../scss/app.scss */
+/* line 43, ../scss/app.scss */
 #animalFilter .sub-nav dd {
   margin-left: 0;
   margin-right: 0;
   padding: 15px 0;
 }
-/* line 44, ../scss/app.scss */
+/* line 47, ../scss/app.scss */
 #animalFilter .sub-nav dd.active {
   background-color: #FB876E;
   margin-right: 0;
 }
-/* line 47, ../scss/app.scss */
+/* line 50, ../scss/app.scss */
 #animalFilter .sub-nav dd.active a {
   background-color: transparent;
 }
-/* line 50, ../scss/app.scss */
+/* line 53, ../scss/app.scss */
 #animalFilter .sub-nav dd.active:hover {
   background-color: #fa7255;
 }
-/* line 52, ../scss/app.scss */
+/* line 55, ../scss/app.scss */
 #animalFilter .sub-nav dd.active:hover a {
   background-color: transparent;
 }
-/* line 57, ../scss/app.scss */
+/* line 60, ../scss/app.scss */
 #animalFilter .sub-nav dd:hover {
   background-color: #FB876E;
 }
 
-/* line 64, ../scss/app.scss */
+/* line 67, ../scss/app.scss */
 #refineFilter {
   background: #F6F5E8;
   padding-top: 15px;
 }
-/* line 67, ../scss/app.scss */
+/* line 70, ../scss/app.scss */
 #refineFilter .button {
   margin: 0;
   line-height: 4px;
 }
 @media only screen and (max-width: 40em) {
-  /* line 67, ../scss/app.scss */
+  /* line 70, ../scss/app.scss */
   #refineFilter .button {
     line-height: 8px;
   }
 }
 @media only screen and (max-width: 40em) {
-  /* line 64, ../scss/app.scss */
+  /* line 67, ../scss/app.scss */
   #refineFilter {
     padding-bottom: 15px;
   }
 }
 
-/* line 80, ../scss/app.scss */
+/* line 83, ../scss/app.scss */
 #browse-pets h3 {
   text-transform: capitalize;
   margin: 20px 0;
 }
 
-/* line 85, ../scss/app.scss */
+/* line 88, ../scss/app.scss */
 .btn-like {
   font-size: 1.2rem;
   padding-top: 5px;
   color: #FB876E;
 }
-/* line 89, ../scss/app.scss */
+/* line 92, ../scss/app.scss */
 .btn-like:hover {
   color: #fa7255;
   cursor: pointer;
 }
 
-/* line 96, ../scss/app.scss */
+/* line 99, ../scss/app.scss */
 #pets-list .adoptable-pet .image-wrap {
   position: relative;
   overflow: hidden;
@@ -9289,7 +9294,7 @@ body {
   height: 180px;
   background: url("img/cat.jpeg") #eee center center;
 }
-/* line 102, ../scss/app.scss */
+/* line 105, ../scss/app.scss */
 #pets-list .adoptable-pet .image-wrap .image {
   min-width: 186px;
   min-height: 180px;
@@ -9297,60 +9302,84 @@ body {
   top: 0;
   left: 0;
 }
-/* line 110, ../scss/app.scss */
+/* line 113, ../scss/app.scss */
 #pets-list .adoptable-pet .name {
   padding-top: 5px;
 }
-/* line 112, ../scss/app.scss */
+/* line 115, ../scss/app.scss */
 #pets-list .adoptable-pet .name a {
   color: #444444;
   font-family: "Aleo", Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 1.1rem;
 }
-/* line 116, ../scss/app.scss */
+/* line 119, ../scss/app.scss */
 #pets-list .adoptable-pet .name a:hover {
   color: #FB876E;
 }
-/* line 120, ../scss/app.scss */
+/* line 123, ../scss/app.scss */
 #pets-list .adoptable-pet .name .breed {
   margin-bottom: 0.5rem;
   margin-top: -3px;
 }
 
-/* line 127, ../scss/app.scss */
+/* line 130, ../scss/app.scss */
+.pet-profile {
+  padding-bottom: 50px;
+}
+
+/* line 133, ../scss/app.scss */
 #banner {
   background: #FDDC76;
   padding: 15px 0;
   margin-bottom: 30px;
 }
-/* line 131, ../scss/app.scss */
+/* line 137, ../scss/app.scss */
 #banner .name {
   color: white;
   font-size: 2.5rem;
 }
-/* line 135, ../scss/app.scss */
+/* line 141, ../scss/app.scss */
 #banner .btn-like {
   font-size: 2rem;
   margin-top: 10px;
 }
 
-/* line 140, ../scss/app.scss */
+/* line 146, ../scss/app.scss */
 #login, #signup {
   background: #F6F5E8;
   padding: 120px 0;
 }
-/* line 143, ../scss/app.scss */
+/* line 149, ../scss/app.scss */
 #login h2, #signup h2 {
   padding: 15px 0;
 }
 
-/* line 147, ../scss/app.scss */
+/* line 153, ../scss/app.scss */
 footer {
   border-top: 2px dashed #FB876E;
   padding: 10px 0;
-  margin-top: 50px;
 }
-/* line 151, ../scss/app.scss */
+/* line 156, ../scss/app.scss */
 footer .inline-list {
   margin-bottom: 0;
+}
+
+/* line 161, ../scss/app.scss */
+#favorites h3 {
+  margin-bottom: 20px;
+}
+
+/* line 165, ../scss/app.scss */
+#friends {
+  background: #f8f8f8;
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+/* line 169, ../scss/app.scss */
+#friends h4 {
+  margin-bottom: 20px;
+}
+/* line 172, ../scss/app.scss */
+#friends .name {
+  color: #444444;
 }

@@ -29,21 +29,21 @@
     </section>
     <section id="friends">
         <div class="row">
-            <div class="small-6 medium-3 columns">
+            <div class="small-12 medium-6 columns">
                 <h4>Friends <span>( {{ friendsList.length }} )</span></h4>
                 <ul class="no-bullet friends-list">
                     <li class="link" ng-repeat="friend in friendsList">
                         <a class="name">{{ friend.username }}</a>
-                        <a ng-click="removeFromFriends(friend)" class="button btn-remove">Remove Friend</a>
+                        <a ng-click="removeFromFriends(friend)" class="btn-remove right">Remove Friend</a>
                     </li>
                 </ul>
             </div>
-            <div class="small-6 medium-3 columns">
+            <div class="small-12 medium-6 columns">
                 <h4>Find Friends</h4>
                 <ul class="no-bullet users-list">
                     <li class="link" ng-repeat="user in users">
                         <a class="name">{{ user.username }}</a>
-                        <a ng-click="addToFriends(user)" ng-class="{'btn-add-friend': friendsList.indexOf(user) == -1}" class="button btn-add">Add Friend</a>
+                        <a ng-click="addToFriends(user)" class="btn-add right">Add Friend</a>
                     </li>
                 </ul>
             </div>
