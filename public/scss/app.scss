@@ -140,6 +140,9 @@ body {
 #login, #signup {
     background: $tan;
     padding: 120px 0;
+    h2 {
+        padding: 15px 0;
+    }
 }
 footer {
     border-top: 2px dashed $primary-color;
