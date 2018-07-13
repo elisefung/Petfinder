@@ -16,6 +16,3 @@ $ node server.js
 ![Screenshot of Petfinder home page](demo.png)
 <br/>
 [Live Demo](http://petfinder-app.herokuapp.com/)
-
-## Project Overview
-Read more about the project's design and development [here](http://net4.ccs.neu.edu/home/elisef/petfinder/overview.html)
